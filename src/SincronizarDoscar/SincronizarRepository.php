@@ -253,6 +253,40 @@ class SincronizarRepository
         $this->conexion->commit();
         return true;
     }
+    public function guardarFormasPago($formaPago)
+    {
+        $formaPago = $formaPago[0];
+
+        $columnas = array_keys($formaPago);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO formas_de_pago (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($formaPago as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
 
 
 

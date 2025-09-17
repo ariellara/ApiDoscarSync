@@ -37,6 +37,7 @@ class SincronizarManager
             //$guardarClientes = $this->guardarClientes($datos["clientes"]);
             $guardarDatosEmpresa = $this->guardarDatosEmpresa($datos["datosEmpresa"]);
             $guardarFamilias = $this->guardarFamilias($datos["familias"]);
+            $guardarFormasPago = $this->guardarFormasPago($datos["formasPago"]);
 
 
             $respuesta->setSuccess(true);
@@ -49,6 +50,21 @@ class SincronizarManager
             $this->logger->guardar("Error al Guardar Datos: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
         }
         return $respuesta;
+    }
+
+    private function guardarFormasPago($formasPago)
+    {
+        foreach ($formasPago as $formaPago) {
+            try {
+                $formaPagoNormalizada = $this->normalizador->normalizarFormaPago($formaPago);
+                $this->repositorio->guardarFormasPago([$formaPagoNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $formaPago['codigo'] ?? 'N/A';
+                $nombre = $formaPago['nombre'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar forma de pago [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        return true;
     }
 
     private function guardarFamilias($familias)

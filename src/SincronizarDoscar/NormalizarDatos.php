@@ -337,6 +337,48 @@ class NormalizarDatos
 
         return $normalizado;
     }
+    public function normalizarFormaPago(array $formaPago): array
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Numero Pagos" => "numero_pagos",
+            "Nombre" => "nombre",
+            "Dias Pago 1" => "dias_pago_1",
+            "Porcentaje Pago 1" => "porcentaje_pago_1",
+            "Dias Pago 2" => "dias_pago_2",
+            "Porcentaje Pago 2" => "porcentaje_pago_2",
+            "Dias Pago 3" => "dias_pago_3",
+            "Porcentaje Pago 3" => "porcentaje_pago_3",
+            "Dias Pago 4" => "dias_pago_4",
+            "Porcentaje Pago 4" => "porcentaje_pago_4",
+            "Dias Pago 5" => "dias_pago_5",
+            "Porcentaje Pago 5" => "porcentaje_pago_5",
+            "Dias Pago 6" => "dias_pago_6",
+            "Porcentaje Pago 6" => "porcentaje_pago_6",
+            "Dias Pago 7" => "dias_pago_7",
+            "Porcentaje Pago 7" => "porcentaje_pago_7",
+            "Dias Pago 8" => "dias_pago_8",
+            "Porcentaje Pago 8" => "porcentaje_pago_8",
+            "Dias Pago 9" => "dias_pago_9",
+            "Porcentaje Pago 9" => "porcentaje_pago_9",
+            "Dias Pago 10" => "dias_pago_10",
+            "Porcentaje Pago 10" => "porcentaje_pago_10",
+            "Dias Pago 11" => "dias_pago_11",
+            "Porcentaje Pago 11" => "porcentaje_pago_11",
+            "Dias Pago 12" => "dias_pago_12",
+            "Porcentaje Pago 12" => "porcentaje_pago_12",
+            "Mostrar en TPV" => "mostrar_en_tpv"
+        ];
+
+        $normalizado = [];
+        foreach ($formaPago as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
 
 
 }
