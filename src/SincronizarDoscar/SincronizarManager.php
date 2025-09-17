@@ -30,11 +30,11 @@ class SincronizarManager
         $respuesta = new Respuesta();
         try {
             $datos = json_decode($data, true);
-           // $guardarArticulos = $this->guardarArticulos($datos["articulos"]);
-            //$guardarArticulosCompuestos = $this->guardarArticulosCompuestos($datos["articulosCompuestos"]);
-            //$guardarCajas = $this->guardarCajas($datos["cajas"]);
-            //$guardarCamareros = $this->guardarCamareros($datos["camareros"]);
-            //$guardarClientes = $this->guardarClientes($datos["clientes"]);
+            $guardarArticulos = $this->guardarArticulos($datos["articulos"]);
+            $guardarArticulosCompuestos = $this->guardarArticulosCompuestos($datos["articulosCompuestos"]);
+            $guardarCajas = $this->guardarCajas($datos["cajas"]);
+            $guardarCamareros = $this->guardarCamareros($datos["camareros"]);
+            $guardarClientes = $this->guardarClientes($datos["clientes"]);
             $guardarDatosEmpresa = $this->guardarDatosEmpresa($datos["datosEmpresa"]);
             $guardarFamilias = $this->guardarFamilias($datos["familias"]);
             $guardarFormasPago = $this->guardarFormasPago($datos["formasPago"]);
@@ -105,13 +105,13 @@ class SincronizarManager
         }
         return true;
     }
-    
+
 
     private function guardarCamareros($camareros)
     {
         foreach ($camareros as $camarero) {
             try {
-                $camareroNormalizado = $this->normalizador-> normalizarCamarero($camarero);
+                $camareroNormalizado = $this->normalizador->normalizarCamarero($camarero);
                 $this->repositorio->guardarCamareros([$camareroNormalizado]);
             } catch (Exception $e) {
                 $codigo = $camarero['codigo'] ?? 'N/A';
@@ -141,7 +141,7 @@ class SincronizarManager
         foreach ($articulos as $articulo) {
 
             try {
-                $articuloNormalizado = $this->normalizador-> normalizarArticulo($articulo);
+                $articuloNormalizado = $this->normalizador->normalizarArticulo($articulo);
                 $this->repositorio->guardarArticulos([$articuloNormalizado]);
 
             } catch (Exception $e) {
@@ -167,7 +167,7 @@ class SincronizarManager
         return true;
 
     }
-   
+
 
 
 
