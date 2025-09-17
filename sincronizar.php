@@ -36,8 +36,6 @@ class ControladorSincronizacion
             echo json_encode(["success" => false, "mensaje" => "Método no permitido"]);
             exit;
         }
-
-        // 🔒 Validar API Key
         $headers = getallheaders();
         $apiKey = $headers['X-API-KEY'] ?? $headers['X-Api-Key'] ?? null;
 
@@ -49,7 +47,7 @@ class ControladorSincronizacion
 
         $raw_data = file_get_contents("php://input");
         $data = json_decode($raw_data, true);
-        usleep(500000); // para evitar flood
+        usleep(500000); 
 
         if (is_array($data)) {
             http_response_code(400);
@@ -70,6 +68,7 @@ class ControladorSincronizacion
     private function procesarOperacion($data)
     {
         $respuestaGuardarDoscar = $this->cargarDoscarManager->guardarDatos($data);
+        
         if ($respuestaGuardarDoscar->getSuccess()) {
             $this->respuesta->setSuccess(true);
             $this->respuesta->setMensaje("Sincronización completada exitosamente.");
