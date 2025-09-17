@@ -253,4 +253,90 @@ class NormalizarDatos
 
         return $normalizado;
     }
+    public function normalizarDatosEmpresa(array $datosEmpresa): array
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Nombre" => "nombre",
+            "Razon Social" => "razon_social",
+            "Año" => "anio",
+            "Actividad" => "actividad",
+            "Domicilio" => "domicilio",
+            "Codigo Postal" => "codigo_postal",
+            "Poblacion" => "poblacion",
+            "Provincia" => "provincia",
+            "Pais" => "pais",
+            "Telefono 1" => "telefono_1",
+            "Telefono 2" => "telefono_2",
+            "Fax" => "fax",
+            "E-Mail" => "email",
+            "NIF" => "nif",
+            "Web" => "web",
+            "Afiliacion" => "afiliacion",
+            "Registro Mercantil" => "registro_mercantil",
+            "Observaciones" => "observaciones",
+            "Dual" => "dual_flag",
+            "Decimales Pesetas" => "decimales_pesetas",
+            "Decimales Euros" => "decimales_euros",
+            "Decimales Cantidades" => "decimales_cantidades",
+            "Decimales Descuento" => "decimales_descuento",
+            "Avisar Riesgo" => "avisar_riesgo",
+            "Actualizar PVP" => "actualizar_pvp",
+            "Archivo Imagen" => "archivo_imagen",
+            "Caja Recibos" => "caja_recibos",
+            "Caja Pagos" => "caja_pagos",
+            "Estado" => "estado",
+            "Cliente Nulo" => "cliente_nulo",
+            "Cliente Tickets" => "cliente_tickets",
+            "Moneda Principal" => "moneda_principal",
+            "Cliente Tarjeta" => "cliente_tarjeta",
+            "Contraseña" => "contrasena",
+            "Carpeta Imagenes" => "carpeta_imagenes",
+            "Licencia" => "licencia",
+            "Importe minimo Fac Simpl" => "importe_minimo_fac_simpl",
+            "Importe minimo Fac" => "importe_minimo_fac",
+            "NombreF" => "nombref",
+            "1apellido" => "primer_apellido",
+            "2apellido" => "segundo_apellido"
+        ];
+
+        $normalizado = [];
+        foreach ($datosEmpresa as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarFamilia(array $familia): array
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Nombre" => "nombre",
+            "Observaciones" => "observaciones",
+            "No Mostrar en Tickets" => "no_mostrar_en_tickets",
+            "Combinados" => "combinados",
+            "Archivo Imagen" => "archivo_imagen",
+            "Sumar Importes" => "sumar_importes",
+            "Descripcion Centrada" => "descripcion_centrada",
+            "Subrayado" => "subrayado",
+            "Cursiva" => "cursiva",
+            "Negrita" => "negrita",
+            "Tamaño" => "tamano",
+            "Fuente" => "fuente",
+            "Color Texto" => "color_texto",
+            "Color Fondo" => "color_fondo",
+            "Orden" => "orden"
+        ];
+
+        $normalizado = [];
+        foreach ($familia as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
+
 }

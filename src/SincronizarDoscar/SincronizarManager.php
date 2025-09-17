@@ -35,6 +35,8 @@ class SincronizarManager
             //$guardarCajas = $this->guardarCajas($datos["cajas"]);
             //$guardarCamareros = $this->guardarCamareros($datos["camareros"]);
             //$guardarClientes = $this->guardarClientes($datos["clientes"]);
+            $guardarDatosEmpresa = $this->guardarDatosEmpresa($datos["datosEmpresa"]);
+            $guardarFamilias = $this->guardarFamilias($datos["familias"]);
 
 
             $respuesta->setSuccess(true);
@@ -48,6 +50,31 @@ class SincronizarManager
         }
         return $respuesta;
     }
+
+    private function guardarFamilias($familias)
+    {
+        foreach ($familias as $familia) {
+            try {
+                $familiaNormalizada = $this->normalizador->normalizarFamilia($familia);
+                $this->repositorio->guardarFamilias([$familiaNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $familia['codigo'] ?? 'N/A';
+                $nombre = $familia['nombre'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar familia [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        return true;
+    }
+    private function guardarDatosEmpresa($datosEmpresa)
+    {
+        try {
+            $datosEmpresaNormalizados = $this->normalizador->normalizarDatosEmpresa($datosEmpresa[0]);
+            $this->repositorio->guardarDatosEmpresa([$datosEmpresaNormalizados]);
+        } catch (Exception $e) {
+            $this->logger->guardar("Error al guardar datos de la empresa: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+        }
+        return true;
+    }
     private function guardarClientes($clientes)
     {
         foreach ($clientes as $cliente) {
@@ -55,8 +82,8 @@ class SincronizarManager
                 $clienteNormalizado = $this->normalizador->normalizarCliente($cliente);
                 $this->repositorio->guardarClientes([$clienteNormalizado]);
             } catch (Exception $e) {
-                $codigo = $cliente['Codigo'] ?? 'N/A';
-                $nombre = $cliente['Nombre'] ?? 'N/A';
+                $codigo = $cliente['codigo'] ?? 'N/A';
+                $nombre = $cliente['razon_social'] ?? 'N/A';
                 $this->logger->guardar("Error al guardar cliente [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
             }
         }
@@ -71,8 +98,8 @@ class SincronizarManager
                 $camareroNormalizado = $this->normalizador-> normalizarCamarero($camarero);
                 $this->repositorio->guardarCamareros([$camareroNormalizado]);
             } catch (Exception $e) {
-                $codigo = $camarero['Codigo'] ?? 'N/A';
-                $nombre = $camarero['Nombre'] ?? 'N/A';
+                $codigo = $camarero['codigo'] ?? 'N/A';
+                $nombre = $camarero['nombre'] ?? 'N/A';
                 $this->logger->guardar("Error al guardar camarero [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
             }
         }
@@ -102,8 +129,8 @@ class SincronizarManager
                 $this->repositorio->guardarArticulos([$articuloNormalizado]);
 
             } catch (Exception $e) {
-                $codigo = $articulo['Referencia'] ?? 'N/A';
-                $nombre = $articulo['Descripcion'] ?? 'N/A';
+                $codigo = $articulo['referencia'] ?? 'N/A';
+                $nombre = $articulo['descripcion'] ?? 'N/A';
                 $this->logger->guardar("Error al guardar artículo [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
             }
         }

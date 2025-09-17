@@ -186,6 +186,74 @@ class SincronizarRepository
         return true;
     }
 
+    public function guardarDatosEmpresa(array $datosEmpresa): bool
+    {
+        $datoEmpresa = $datosEmpresa[0];
+
+        $columnas = array_keys($datoEmpresa);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO datos_empresa (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($datoEmpresa as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+    public function guardarFamilias($familia)
+    {
+        $familia = $familia[0];
+
+        $columnas = array_keys($familia);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO familias (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+        $tipos = "";
+        $valores = [];
+        foreach ($familia as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
 
 
 
