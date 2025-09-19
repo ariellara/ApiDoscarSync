@@ -37,7 +37,9 @@ class ControladorSincronizacion
         $apiKey = $headers['X-API-KEY'] ?? $headers['X-Api-Key'] ?? null;
         $ApiKeyBase = $this->cargarDoscarManager->consultarApiKey();
 
-        if ($apiKey !== $ApiKeyBase->getDatos()) {
+        $apiKeyDb = $ApiKeyBase ? $ApiKeyBase->getDatos() : null;
+
+        if (!$apiKeyDb || !hash_equals($apiKeyDb, (string) $apiKey)) {
             http_response_code(401);
             echo json_encode(["success" => false, "mensaje" => "Acceso no autorizado"]);
             exit;
@@ -45,7 +47,7 @@ class ControladorSincronizacion
 
         $raw_data = file_get_contents("php://input");
         $data = json_decode($raw_data, true);
-        usleep(500000); 
+        usleep(500000);
 
         if (is_array($data)) {
             http_response_code(400);
@@ -66,7 +68,7 @@ class ControladorSincronizacion
     private function procesarOperacion($data)
     {
         $respuestaGuardarDoscar = $this->cargarDoscarManager->guardarDatos($data);
-        
+
         if ($respuestaGuardarDoscar->getSuccess()) {
             $this->respuesta->setSuccess(true);
             $this->respuesta->setMensaje("Sincronización completada exitosamente.");
