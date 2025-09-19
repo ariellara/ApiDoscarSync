@@ -288,6 +288,136 @@ class SincronizarRepository
         return true;
     }
 
+    public function guardarLogControlModificaciones(array $log)
+    {
+
+        $columnas = array_keys($log);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+
+        $sql = "INSERT INTO logcontrolmodificaciones (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($log as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarProveedores(array $proveedores)
+    {
+        if (empty($proveedores)) {
+            return false;
+        }
+        $columnas = array_keys($proveedores[0]);
+        $placeholdersFila = "(" . implode(",", array_fill(0, count($columnas), "?")) . ")";
+        $placeholders = implode(",", array_fill(0, count($proveedores), $placeholdersFila));
+        $columnasSql = implode(",", array_map(fn($c) => "`$c`", $columnas));
+        $updates = implode(",", array_map(fn($c) => "`$c`=VALUES(`$c`)", $columnas));
+
+        $sql = "INSERT INTO proveedores ($columnasSql)
+            VALUES $placeholders
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+        if (!$stmt) {
+            throw new \RuntimeException("Error en prepare: " . $this->conexion->error);
+        }
+        $tipos = "";
+        $valores = [];
+        foreach ($proveedores as $proveedor) {
+            foreach ($proveedor as $valor) {
+                if (is_int($valor)) {
+                    $tipos .= "i";
+                } elseif (is_float($valor) || is_double($valor)) {
+                    $tipos .= "d";
+                } else {
+                    $tipos .= "s";
+                }
+                $valores[] = $valor;
+            }
+        }
+
+        if (!$stmt->bind_param($tipos, ...$valores)) {
+            throw new \RuntimeException("Error en bind_param: " . $stmt->error);
+        }
+
+        if (!$stmt->execute()) {
+            throw new \RuntimeException("Error en execute: " . $stmt->error);
+        }
+
+        $stmt->close();
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarTiposImpuestos(array $tipos)
+    {
+        if (empty($tipos)) {
+            return false;
+        }
+
+        $columnas = array_keys($tipos[0]);
+        $placeholdersFila = "(" . implode(",", array_fill(0, count($columnas), "?")) . ")";
+        $placeholders = implode(",", array_fill(0, count($tipos), $placeholdersFila));
+        $columnasSql = implode(",", array_map(fn($c) => "`$c`", $columnas));
+        $updates = implode(",", array_map(fn($c) => "`$c`=VALUES(`$c`)", $columnas));
+
+        $sql = "INSERT INTO tipos_impuestos ($columnasSql)
+            VALUES $placeholders
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+        if (!$stmt) {
+            throw new \RuntimeException("Error en prepare: " . $this->conexion->error);
+        }
+
+        $tiposBind = "";
+        $valores = [];
+        foreach ($tipos as $tipo) {
+            foreach ($tipo as $valor) {
+                if (is_int($valor)) {
+                    $tiposBind .= "i";
+                } elseif (is_float($valor) || is_double($valor)) {
+                    $tiposBind .= "d";
+                } else {
+                    $tiposBind .= "s";
+                }
+                $valores[] = $valor;
+            }
+        }
+
+        if (!$stmt->bind_param($tiposBind, ...$valores)) {
+            throw new \RuntimeException("Error en bind_param: " . $stmt->error);
+        }
+
+        if (!$stmt->execute()) {
+            throw new \RuntimeException("Error en execute: " . $stmt->error);
+        }
+
+        $stmt->close();
+        $this->conexion->commit();
+        return true;
+    }
+
+
+
 
 
 

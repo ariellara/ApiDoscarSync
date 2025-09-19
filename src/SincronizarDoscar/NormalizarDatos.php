@@ -378,6 +378,114 @@ class NormalizarDatos
 
         return $normalizado;
     }
+    public function normalizarLogControl(array $log): array
+    {
+        $mapa = [
+            "ID" => "ID",
+            "Usuario" => "Usuario",
+            "Fecha" => "Fecha",
+            "Evento" => "Evento",
+            "accion" => "accion",
+            "Observaciones" => "Observaciones"
+        ];
+
+        $normalizado = [];
+        foreach ($log as $clave => $valor) {
+            $columna = $mapa[$clave] ?? $clave;
+            $normalizado[$columna] = $valor;
+        }
+        unset($normalizado["ID"]);
+        return $normalizado;
+    }
+    public function normalizarProveedor(array $proveedor): array
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Razon Social" => "razon_social",
+            "Tipo Proveedor" => "tipo_proveedor",
+            "Titular" => "titular",
+            "Domicilio" => "domicilio",
+            "Codigo Postal" => "codigo_postal",
+            "Poblacion" => "poblacion",
+            "Provincia" => "provincia",
+            "Pais" => "pais",
+            "Telefono 1" => "telefono1",
+            "Telefono 2" => "telefono2",
+            "Fax" => "fax",
+            "E-Mail" => "email",
+            "NIF" => "nif",
+            "Web" => "web",
+            "Codigo Cliente" => "codigo_cliente",
+            "Persona Contacto" => "persona_contacto",
+            "Telefono Contacto" => "telefono_contacto",
+            "Archivo Imagen" => "archivo_imagen",
+            "Observaciones" => "observaciones",
+            "Tabla Descuento" => "tabla_descuento",
+            "Descuento PP" => "descuento_pp",
+            "Impuestos" => "impuestos",
+            "Forma de Pago" => "forma_pago",
+            "Dia Pago 1" => "dia_pago_1",
+            "Dia Pago 2" => "dia_pago_2",
+            "Banco" => "banco",
+            "Domicilio Banco" => "domicilio_banco",
+            "Codigo Postal Banco" => "codigo_postal_banco",
+            "Poblacion Banco" => "poblacion_banco",
+            "Provincia Banco" => "provincia_banco",
+            "Pais Banco" => "pais_banco",
+            "Entidad" => "entidad",
+            "Sucursal" => "sucursal",
+            "DC" => "dc",
+            "Cuenta" => "cuenta",
+            "Portes" => "portes",
+            "Domicilio Envio" => "domicilio_envio",
+            "Codigo Postal Envio" => "codigo_postal_envio",
+            "Poblacion Envio" => "poblacion_envio",
+            "Provincia Envio" => "provincia_envio",
+            "Pais Envio" => "pais_envio",
+            "Antiguedad" => "antiguedad",
+            "Riesgo" => "riesgo",
+            "Aviso" => "aviso",
+            "IBAN" => "iban"
+        ];
+
+        $normalizado = [];
+        foreach ($proveedor as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            $normalizado[$columna] = $valor;
+        }
+        return $normalizado;
+    }
+    public function normalizarTipoImpuesto(array $tipoImpuesto): array
+{
+    $mapa = [
+        "Codigo" => "codigo",
+        "Nombre" => "nombre",
+        "IVA" => "iva",
+        "Recargo" => "recargo",
+        "Observaciones" => "observaciones"
+    ];
+
+    $normalizado = [];
+    foreach ($tipoImpuesto as $clave => $valor) {
+        $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+        if (is_string($valor) && is_numeric($valor)) {
+            if (strpos($valor, ".") !== false) {
+                $valor = (float)$valor;
+            } else {
+                $valor = (int)$valor;
+            }
+        }
+        if ($valor === "null" || $valor === null) {
+            $valor = null;
+        }
+
+        $normalizado[$columna] = $valor;
+    }
+
+    return $normalizado;
+}
+
+
 
 
 
