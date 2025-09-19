@@ -416,6 +416,16 @@ class SincronizarRepository
         return true;
     }
 
+    public function consultarApiKey()
+    {
+        $sql = "SELECT api_key FROM api_keys WHERE id = 1";
+        $resultado = $this->conexion->query($sql);
+        if ($resultado && $fila = $resultado->fetch_assoc()) {
+            return $fila['api_key'];
+        }
+        return null;
+    }
+
 
 
 

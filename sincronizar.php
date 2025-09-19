@@ -14,9 +14,6 @@ class ControladorSincronizacion
     private $cargarDoscarManager;
     private $respuesta;
 
-    // Define la API key aquí o cárgala desde .env/config
-    private const API_KEY = '4f7d3a5c09abf0de7c84b5f0c9a1f54b3a6d9e15c2fa11e8f9c32d8c927a1d44';
-
     public function __construct($conexion)
     {
         $this->conexion = $conexion;
@@ -38,8 +35,9 @@ class ControladorSincronizacion
         }
         $headers = getallheaders();
         $apiKey = $headers['X-API-KEY'] ?? $headers['X-Api-Key'] ?? null;
+        $ApiKeyBase = $this->cargarDoscarManager->consultarApiKey();
 
-        if ($apiKey !== self::API_KEY) {
+        if ($apiKey !== $ApiKeyBase->getDatos()) {
             http_response_code(401);
             echo json_encode(["success" => false, "mensaje" => "Acceso no autorizado"]);
             exit;

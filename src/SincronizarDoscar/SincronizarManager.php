@@ -225,6 +225,28 @@ class SincronizarManager
 
     }
 
+    public function consultarApiKey(): Respuesta
+    {
+        $respuesta = new Respuesta();
+        try {
+            $apiKey = $this->repositorio->consultarApiKey();
+            if ($apiKey) {
+                $respuesta->setSuccess(true);
+                $respuesta->setMensaje("API Key consultada correctamente.");
+                $respuesta->setDatos($apiKey);
+            } else {
+                $respuesta->setSuccess(false);
+                $respuesta->setMensaje("No se encontró la API Key.");
+            }
+        } catch (Exception $e) {
+            $respuesta->setSuccess(false);
+            $respuesta->setMensaje("Error al consultar la API Key: " . $e->getMessage());
+            $this->logger->guardar("Error al consultar la API Key: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+        }
+        return $respuesta;
+
+    }
+
 
 
 
