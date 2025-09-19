@@ -1,4 +1,8 @@
 <?php
+/* * Normalizar datos de entrada para que coincidan con las columnas de la base de datos.
+ * Autor: Ariel Lara
+ * Fecha: 2025-09-19
+ */
 
 class NormalizarDatos
 {

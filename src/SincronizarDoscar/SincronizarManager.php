@@ -1,4 +1,9 @@
 <?php
+/* * Clase SincronizarManager
+ * Maneja la lógica de negocio para la sincronización de datos.
+ * Autor: Ariel Lara 
+ * Fecha: 2025-09-19
+ */
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

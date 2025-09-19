@@ -1,4 +1,9 @@
 <?php
+/* * Acciones en la base de datos para la sincronización con Doscar
+ * Autor: Ariel Lara
+ * Fecha: 2025-09-19
+ */
+
 include __DIR__ . "/../../conexion/conexion.php";
 
 

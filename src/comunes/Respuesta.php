@@ -1,5 +1,8 @@
 <?php
-
+/* * Clase Respuesta
+ * Maneja las respuestas de las operaciones con éxito, mensajes, datos y URLs.
+ * Autor: Ariel Lara
+ */
 class Respuesta
 {
     private mixed $datos = null;
