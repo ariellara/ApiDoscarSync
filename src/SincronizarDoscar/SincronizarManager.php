@@ -35,17 +35,26 @@ class SincronizarManager
         $respuesta = new Respuesta();
         try {
             $datos = json_decode($data, true);
-            $guardarArticulos = $this->guardarArticulos($datos["articulos"]);
-            $guardarArticulosCompuestos = $this->guardarArticulosCompuestos($datos["articulosCompuestos"]);
-            $guardarCajas = $this->guardarCajas($datos["cajas"]);
-            $guardarCamareros = $this->guardarCamareros($datos["camareros"]);
-            $guardarClientes = $this->guardarClientes($datos["clientes"]);
-            $guardarDatosEmpresa = $this->guardarDatosEmpresa($datos["datosEmpresa"]);
-            $guardarFamilias = $this->guardarFamilias($datos["familias"]);
-            $guardarFormasPago = $this->guardarFormasPago($datos["formasPago"]);
-            $guargarlogControlModificaciones = $this->guardarLogControlModificaciones($datos["logControlModificaciones"]);
-            $guardarProveedores = $this->guardarProveedores($datos["proveedores"]);
-            $guardarTiposImpuestos = $this->guardarTiposImpuestos($datos["tiposDeImpuestos"]);
+            //$guardarArticulos = $this->guardarArticulos($datos["articulos"]);
+           // $guardarArticulosCompuestos = $this->guardarArticulosCompuestos($datos["articulosCompuestos"]);
+           // $guardarCajas = $this->guardarCajas($datos["cajas"]);
+            // $guardarCamareros = $this->guardarCamareros($datos["camareros"]);
+            // $guardarClientes = $this->guardarClientes($datos["clientes"]);
+            // $guardarDatosEmpresa = $this->guardarDatosEmpresa($datos["datosEmpresa"]);
+            // $guardarFamilias = $this->guardarFamilias($datos["familias"]);
+            // $guardarFormasPago = $this->guardarFormasPago($datos["formasPago"]);
+            // $guargarlogControlModificaciones = $this->guardarLogControlModificaciones($datos["logControlModificaciones"]);
+            // $guardarProveedores = $this->guardarProveedores($datos["proveedores"]);
+            // $guardarTiposImpuestos = $this->guardarTiposImpuestos($datos["tiposDeImpuestos"]);
+           // $guardarGastos = $this->guardarGastos($datos["gastos"]);
+            //$guardarCabeceraFacturasVenta = $this->guardarCabeceraFacturasVenta($datos["cabeceraFacturaVenta"]);
+            //$guardarCabeceraTicketsVenta = $this->guardarCabeceraTicketsVenta($datos["cabeceraTicketsVenta"]);
+            //$guardarHistoricocierreCajas = $this->guardarHistoricoCierreCajas($datos["historicoCierresCaja"]);
+            //$guardarLineasFacturasVenta = $this->guardarLineasFacturasVenta($datos["lineasFacturaVenta"]);
+            //$guardarLineasTicketsVenta = $this->guardarLineasTicketsVenta($datos["lineasTicketsVenta"]);
+            //$guardarLogOperaciones = $this->guardarLogOperaciones($datos["logOperaciones"]);
+            $guardarLogUsuarios = $this->guardarLogUsuarios($datos["logUsuarios"]);
+            $guardarMezas = $this->guardarMesas($datos["mesas"]);
 
 
 
@@ -60,6 +69,145 @@ class SincronizarManager
             $this->logger->guardar("Error al Guardar Datos: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
         }
         return $respuesta;
+    }
+    private function guardarMesas($mesas)
+    {
+        foreach ($mesas as $mesa) {
+            try {
+                $mesaNormalizada = $this->normalizador->normalizarMesas($mesa);
+                $this->repositorio->guardarMesas([$mesaNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $mesa['Codigo'] ?? 'N/A';
+                $nombre = $mesa['Nombre'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar mesa [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Mesas guardadas correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+    }
+    private function guardarLogUsuarios($log)
+    {
+        foreach ($log as $entrada) {
+            try {
+                $normalizar = $this->normalizador->normalizarLogUsuarios($entrada);
+                $this->repositorio->guardarLogUsuarios([$normalizar]);
+            } catch (Exception $e) {
+                $this->logger->guardar("Error al guardar log de usuarios: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Log de usuarios guardado correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+    }
+    private function guardarLogOperaciones($log)
+    {
+        foreach ($log as $entrada) {
+            try {
+                $normalizar = $this->normalizador->normalizarLogOperacion($entrada);
+                $this->repositorio->guardarLogOperaciones([$normalizar]);
+            } catch (Exception $e) {
+                $this->logger->guardar("Error al guardar log de operaciones: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Log de operaciones guardado correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+    }
+
+    private function guardarLineasTicketsVenta($lineas)
+    {
+        foreach ($lineas as $linea) {
+            try {
+                $lineaNormalizada = $this->normalizador->normalizarLineaTicketVenta($linea);
+                $this->repositorio->guardarLineasTicketsVenta([$lineaNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $linea['Numero'] ?? 'N/A';
+                $nombre = $linea['Descripcion'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar línea de ticket de venta [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Líneas de tickets de venta guardadas correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
+    }
+    private function guardarLineasFacturasVenta($lineas)
+    {
+        foreach ($lineas as $linea) {
+            try {
+                $lineaNormalizada = $this->normalizador->normalizarLineasFacturaVenta($linea);
+                $this->repositorio->guardarLineasFacturasVenta([$lineaNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $linea['Numero'] ?? 'N/A';
+                $nombre = $linea['Descripcion'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar línea de factura de venta [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Líneas de facturas de venta guardadas correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
+    }
+    private function guardarHistoricoCierreCajas($cierres)
+    {
+        foreach ($cierres as $cierre) {
+            try {
+                $cierreNormalizado = $this->normalizador->normalizarHistoricoCierresCaja($cierre);
+                $this->repositorio->guardarHistoricoCierreCajas([$cierreNormalizado]);
+            } catch (Exception $e) {
+                $codigo = $cierre['Numero'] ?? 'N/A';
+                $nombre = $cierre['Caja'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar histórico de cierre de caja [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Históricos de cierre de cajas guardados correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
+    }
+    private function guardarCabeceraTicketsVenta($cabeceras)
+    {
+        foreach ($cabeceras as $cabecera) {
+            try {
+                $cabeceraNormalizada = $this->normalizador->normalizarCabeceraTicketsVenta($cabecera);
+                $this->repositorio->guardarCabeceraTicketsVenta([$cabeceraNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $cabecera['Numero'] ?? 'N/A';
+                $nombre = $cabecera['Cliente'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar cabecera de ticket de venta [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Cabeceras de tickets de venta guardadas correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
+    }
+    private function guardarCabeceraFacturasVenta($cabeceras)
+    {
+        foreach ($cabeceras as $cabecera) {
+            try {
+                $cabeceraNormalizada = $this->normalizador->normalizarCabeceraFacturaVenta($cabecera);
+                $this->repositorio->guardarCabeceraFacturasVenta([$cabeceraNormalizada]);
+            } catch (Exception $e) {
+                $codigo = $cabecera['numero'] ?? 'N/A';
+                $nombre = $cabecera['razon_social'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar cabecera de factura de venta [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Cabeceras de facturas de venta guardadas correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
+    }
+
+    private function guardarGastos($gastos)
+    {
+        foreach ($gastos as $gasto) {
+            try {
+                $gastoNormalizado = $this->normalizador->normalizarGasto($gasto);
+                $this->repositorio->guardarGastos([$gastoNormalizado]);
+            } catch (Exception $e) {
+                $codigo = $gasto['numero_gasto'] ?? 'N/A';
+                $nombre = $gasto['casusante'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar gasto [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Gastos guardados correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+
     }
     private function guardarTiposImpuestos($tiposImpuestos)
     {

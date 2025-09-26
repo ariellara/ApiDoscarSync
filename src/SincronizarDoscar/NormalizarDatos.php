@@ -246,7 +246,10 @@ class NormalizarDatos
             "Mostaza" => "mostaza",
             "Moluscos" => "moluscos",
             "Azufre" => "azufre",
-            "Altramuces" => "altramuces"
+            "Altramuces" => "altramuces",
+            "TipoDocumento" => "tipodocumento",
+            "PaisAlfa2" => "paisalfa2",
+            "tipoExcenta" => "tipoexenta"
         ];
 
         $normalizado = [];
@@ -460,34 +463,441 @@ class NormalizarDatos
         return $normalizado;
     }
     public function normalizarTipoImpuesto(array $tipoImpuesto): array
-{
-    $mapa = [
-        "Codigo" => "codigo",
-        "Nombre" => "nombre",
-        "IVA" => "iva",
-        "Recargo" => "recargo",
-        "Observaciones" => "observaciones"
-    ];
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Nombre" => "nombre",
+            "IVA" => "iva",
+            "Recargo" => "recargo",
+            "Observaciones" => "observaciones"
+        ];
 
-    $normalizado = [];
-    foreach ($tipoImpuesto as $clave => $valor) {
-        $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
-        if (is_string($valor) && is_numeric($valor)) {
-            if (strpos($valor, ".") !== false) {
-                $valor = (float)$valor;
-            } else {
-                $valor = (int)$valor;
+        $normalizado = [];
+        foreach ($tipoImpuesto as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            if (is_string($valor) && is_numeric($valor)) {
+                if (strpos($valor, ".") !== false) {
+                    $valor = (float) $valor;
+                } else {
+                    $valor = (int) $valor;
+                }
             }
-        }
-        if ($valor === "null" || $valor === null) {
-            $valor = null;
+            if ($valor === "null" || $valor === null) {
+                $valor = null;
+            }
+
+            $normalizado[$columna] = $valor;
         }
 
-        $normalizado[$columna] = $valor;
+        return $normalizado;
     }
 
-    return $normalizado;
-}
+    public function normalizarGasto(array $gasto): array
+    {
+        $mapa = [
+            "Numero Gasto" => "numero_gasto",
+            "Fecha" => "fecha",
+            "Importe" => "importe",
+            "Caja" => "caja",
+            "Causante" => "causante",
+            "Descripcion" => "descripcion",
+            "Observaciones" => "observaciones",
+            "Moneda" => "moneda",
+            "Facturado" => "facturado",
+            "Historico" => "historico",
+        ];
+
+        $normalizado = [];
+
+        foreach ($gasto as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            switch ($columna) {
+                case 'numero_gasto':
+                case 'caja':
+                case 'moneda':
+                case 'facturado':
+                case 'historico':
+                    $valor = (int) $valor;
+                    break;
+                case 'importe':
+                    $valor = (float) $valor;
+                    break;
+                case 'descripcion':
+                case 'observaciones':
+                case 'causante':
+                    $valor = trim($valor) !== '' ? $valor : null;
+                    break;
+                case 'fecha':
+                    $valor = $valor ?: null;
+                    break;
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
+    public function normalizarCabeceraFacturaVenta(array $factura): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "Fecha" => "fecha",
+            "Cliente" => "cliente",
+            "Observaciones" => "observaciones",
+            "Representante" => "representante",
+            "Comision" => "comision",
+            "Aplicar Comision" => "aplicar_comision",
+            "Forma de Pago" => "forma_pago",
+            "Fecha Caducidad" => "fecha_caducidad",
+            "Realizado por" => "realizado_por",
+            "Facturado" => "facturado",
+            "Documento" => "documento",
+            "Razon Social" => "razon_social",
+            "Domicilio" => "domicilio",
+            "Codigo Postal" => "codigo_postal",
+            "Poblacion" => "poblacion",
+            "Provincia" => "provincia",
+            "Pais" => "pais",
+            "Telefono" => "telefono",
+            "Notas" => "notas",
+            "Transportista" => "transportista",
+            "Tipo Portes" => "tipo_portes",
+            "Descuento PP" => "descuento_pp",
+            "Gastos" => "gastos",
+            "Portes" => "portes",
+            "Cierre Caja" => "cierre_caja",
+            "Moneda" => "moneda",
+            "ExpedienteFace" => "expediente_face",
+            "OperacionFace" => "operacion_face",
+            "EntidadPublica" => "entidad_publica",
+            "OficinaContable" => "oficina_contable",
+            "OrganoGestor" => "organo_gestor",
+            "UnidadTramitadora" => "unidad_tramitadora",
+            "Organoproponente" => "organo_proponente",
+            "Subido" => "subido",
+            "TBAI" => "tbai",
+            "SerieFacturaAnterior" => "serie_factura_anterior",
+            "NumFacturaAnterior" => "num_factura_anterior",
+            "FechaExpedicionFacturaAnterior" => "fecha_expedicion_factura_anterior",
+            "SignatureValueFirmaFacturaAnterior" => "signature_value_firma_factura_anterior",
+            "QrLabel" => "qr_label",
+            "QrContenido" => "qr_contenido",
+            "SignatureValue" => "signature_value",
+            "NumFacturaTBAI" => "num_factura_tbai",
+            "SerieE" => "serie_e",
+            "NumeroE" => "numero_e",
+            "Emitida" => "emitida",
+            "Rectificativa" => "rectificativa",
+            "Anulada" => "anulada",
+            "InversionSujetoPasivo" => "inversion_sujeto_pasivo",
+            "estadoTBAI" => "estado_tbai",
+            "PathestadoTBAI" => "path_estado_tbai",
+            "faceActPeriod" => "face_act_period",
+            "facePeriodIni" => "face_period_ini",
+            "facePeriodFin" => "face_period_fin",
+            "faceAdditionalInformation" => "face_additional_information",
+            "tipoExenta" => "tipo_exenta",
+            "IBANFace" => "iban_face"
+        ];
+
+        $normalizado = [];
+
+        foreach ($factura as $clave => $valor) {
+
+            $claveNormalizada = $clave;
+            if (isset($mapa[$claveNormalizada])) {
+                $columna = $mapa[$claveNormalizada];
+            } else {
+                $columna = strtolower(str_replace(" ", "_", $clave));
+            }
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
+    public function normalizarCabeceraTicketsVenta(array $datos): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "Fecha" => "fecha",
+            "Hora" => "hora",
+            "Cliente" => "cliente",
+            "Caja" => "caja",
+            "Camarero" => "camarero",
+            "Mesa" => "mesa",
+            "Cuenta" => "cuenta",
+            "Entrega" => "entrega",
+            "Facturado" => "facturado",
+            "Documento" => "documento",
+            "Observaciones" => "observaciones",
+            "Descuento PP" => "descuento_pp",
+            "Moneda" => "moneda",
+            "Aplazado" => "aplazado",
+            "Forma de Pago" => "forma_de_pago",
+            "Personas" => "personas",
+            "Notas" => "notas",
+            "Porcentaje Propina" => "porcentaje_propina",
+            "Importe Propina" => "importe_propina",
+            "FormaPago1" => "formapago1",
+            "FormaPago2" => "formapago2",
+            "FormaPago3" => "formapago3",
+            "Entrega1" => "entrega1",
+            "Entrega2" => "entrega2",
+            "Entrega3" => "entrega3",
+            "idEvento" => "idevento",
+            "Historico" => "historico",
+            "flag" => "flag",
+            "subido" => "subido",
+            "tbai" => "tbai",
+            "SerieFacturaAnterior" => "serie_factura_anterior",
+            "NumFacturaAnterior" => "num_factura_anterior",
+            "FechaExpedicionFacturaAnterior" => "fecha_expedicion_factura_anterior",
+            "SignatureValueFirmaFacturaAnterior" => "signature_value_firma_factura_anterior",
+            "QrLabel" => "qr_label",
+            "QrContenido" => "qr_contenido",
+            "SignatureValue" => "signature_value",
+            "NumFacturaTBAI" => "num_factura_tbai",
+            "SerieE" => "serie_e",
+            "NumeroE" => "numero_e",
+            "Emitida" => "emitida",
+            "Rectificativa" => "rectificativa",
+            "estadoTBAI" => "estado_tbai",
+            "PathestadoTBAI" => "path_estado_tbai",
+            "tipoExenta" => "tipo_exenta"
+        ];
+
+        $normalizado = [];
+
+        foreach ($datos as $clave => $valor) {
+            $claveMapeada = str_replace([' ', '_'], '', strtolower($clave));
+            $encontrado = false;
+
+            foreach ($mapa as $key => $val) {
+                $keyMapa = str_replace([' ', '_'], '', strtolower($key));
+                if ($claveMapeada === $keyMapa) {
+                    $normalizado[$val] = $valor;
+                    $encontrado = true;
+                    break;
+                }
+            }
+
+            if (!$encontrado) {
+                $normalizado[strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $clave))] = $valor;
+            }
+        }
+
+        return $normalizado;
+    }
+    public function normalizarHistoricoCierresCaja(array $data): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "Caja" => "caja",
+            "Fecha" => "fecha",
+            "Suma Tickets Efectivo" => "suma_tickets_efectivo",
+            "Suma Tickets Tarjeta" => "suma_tickets_tarjeta",
+            "Suma Recibos Clientes" => "suma_recibos_clientes",
+            "Suma Ingresos" => "suma_ingresos",
+            "Suma Pagos Proveed" => "suma_pagos_proveed",
+            "Suma Pagos Repre" => "suma_pagos_repre",
+            "Suma Pagos Camareros" => "suma_pagos_camareros",
+            "Suma Gastos" => "suma_gastos",
+            "Cobros N Venta" => "cobros_n_venta",
+            "Pagos N Compra" => "pagos_n_compra",
+            "Saldo Inicial Caja" => "saldo_inicial_caja",
+            "Total" => "total",
+            "Importe caja" => "importe_caja",
+            "Camarero" => "camarero",
+            "Ticket Inicial Efectivo" => "ticket_inicial_efectivo",
+            "Ticket Final Efectivo" => "ticket_final_efectivo",
+            "Ticket Inicial Tarjeta" => "ticket_inicial_tarjeta",
+            "Ticket Final Tarjeta" => "ticket_final_tarjeta",
+            "N Tickets Incluidos Efectivo" => "n_tickets_incluidos_efectivo",
+            "N Tickets Incluidos Tarjeta" => "n_tickets_incluidos_tarjeta",
+        ];
+
+        $normalizado = [];
+
+        foreach ($data as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+                $normalizado[$columna] = $valor;
+            } else {
+                $columna = strtolower(str_replace(' ', '_', $clave));
+                $normalizado[$columna] = $valor;
+            }
+        }
+
+        return $normalizado;
+    }
+    public function normalizarLineasFacturaVenta(array $linea): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "Linea" => "linea",
+            "Articulo" => "articulo",
+            "Descripcion" => "descripcion",
+            "Coste" => "coste",
+            "Talla" => "talla",
+            "Color" => "color",
+            "Cantidad" => "cantidad",
+            "Precio" => "precio",
+            "Descuento" => "descuento",
+            "IVA" => "iva",
+            "RE" => "re"
+        ];
+
+        $normalizado = [];
+
+        foreach ($linea as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+            } else {
+                $columna = strtolower(str_replace(' ', '_', $clave));
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarLineaTicketVenta(array $linea): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "Linea" => "linea",
+            "Articulo" => "articulo",
+            "Descripcion" => "descripcion",
+            "Coste" => "coste",
+            "Talla" => "talla",
+            "Color" => "color",
+            "Cantidad" => "cantidad",
+            "Precio" => "precio",
+            "Descuento" => "descuento",
+            "IVA" => "iva",
+            "RE" => "re",
+            "Impreso2" => "impreso2",
+            "CantidadImpresa2" => "cantidad_impresa2",
+            "Detalle" => "detalle",
+            "id_invitacion" => "id_invitacion"
+        ];
+
+        $normalizado = [];
+
+        foreach ($linea as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+            } else {
+                $columna = strtolower(str_replace(" ", "_", $clave));
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarLogOperacion(array $log): array
+    {
+        $mapa = [
+            "Numero" => "numero",
+            "fechaHora" => "fecha_hora",
+            "Terminal" => "terminal",
+            "uid" => "uid",
+            "Dispositivo" => "dispositivo",
+            "Camarero" => "camarero",
+            "OperReg" => "oper_reg",
+            "Evento" => "evento",
+            "Operacion" => "operacion",
+            "Descripcion" => "descripcion",
+            "json" => "json"
+        ];
+
+        $normalizado = [];
+
+        foreach ($log as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+            } else {
+                $columna = strtolower(str_replace(" ", "_", $clave));
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarLogUsuarios(array $data): array
+    {
+        $mapa = [
+            "Id" => "id",
+            "Fecha" => "fecha",
+            "Hora" => "hora",
+            "Operacion" => "operacion",
+            "Camarero" => "camarero",
+            "Ticket" => "ticket",
+            "Referencia" => "referencia",
+            "Descripcion" => "descripcion",
+            "Cantidad" => "cantidad",
+            "PVP" => "pvp",
+            "Modificado" => "modificado",
+            "Total" => "total"
+        ];
+
+        $normalizado = [];
+
+        foreach ($data as $clave => $valor) {
+            $claveNormalizada = $clave;
+            if (isset($mapa[$claveNormalizada])) {
+                $columna = $mapa[$claveNormalizada];
+            } else {
+                $columna = strtolower(str_replace(' ', '_', $clave));
+            }
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarMesas(array $mesa): array
+    {
+        $mapa = [
+            "Codigo" => "codigo",
+            "Nombre" => "nombre",
+            "Ubicacion" => "ubicacion",
+            "Observaciones" => "observaciones",
+            "Precios" => "precios",
+            "Personas" => "personas",
+            "Archivo Imagen" => "archivo_imagen",
+            "Horizontal" => "horizontal",
+            "Vertical" => "vertical",
+            "Salon" => "salon",
+            "Archivo Imagen Ocupado" => "archivo_imagen_ocupado",
+            "alias" => "alias"
+        ];
+
+        $normalizado = [];
+
+        foreach ($mesa as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+            } else {
+                $columna = strtolower(str_replace(" ", "_", $clave));
+            }
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

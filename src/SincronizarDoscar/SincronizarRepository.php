@@ -421,6 +421,315 @@ class SincronizarRepository
         return true;
     }
 
+    public function guardarGastos($gasto): bool
+    {
+        $gasto = $gasto[0];
+
+        $columnas = array_keys($gasto);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO gastos (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($gasto as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarCabeceraFacturasVenta($cabecera)
+    {
+        $cabecera = $cabecera[0];
+
+        $columnas = array_keys($cabecera);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO cabecera_facturas_venta (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($cabecera as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarCabeceraTicketsVenta($cabecera)
+    {
+        $cabecera = $cabecera[0];
+
+        $columnas = array_keys($cabecera);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO cabecera_tickets_venta (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($cabecera as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+    public function guardarHistoricoCierreCajas($cierre)
+    {
+        $cierre = $cierre[0];
+
+        $columnas = array_keys($cierre);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO historico_cierres_caja (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($cierre as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarLineasFacturasVenta(array $lineas)
+    {
+        $linea = $lineas[0];
+
+        $columnas = array_keys($linea);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO lineas_facturas_venta (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($linea as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarLineasTicketsVenta(array $lineas): bool
+    {
+        $linea = $lineas[0];
+
+        $columnas = array_keys($linea);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO lineas_tickets_venta (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($linea as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+    public function guardarLogOperaciones(array $log): bool
+    {
+        $logEntry = $log[0];
+
+        $columnas = array_keys($logEntry);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+
+        $sql = "INSERT INTO logoperaciones (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($logEntry as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarLogUsuarios(array $logUsuario): bool
+    {
+        $logEntry = $logUsuario[0];
+
+        $columnas = array_keys($logEntry);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+
+        $sql = "INSERT INTO logusuarios (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($logEntry as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarMesas(array $mesas): bool
+    {
+        $mesa = $mesas[0];
+
+        $columnas = array_keys($mesa);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO mesas (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($mesa as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
     public function consultarApiKey()
     {
         $sql = "SELECT api_key FROM api_keys WHERE id = 1";
