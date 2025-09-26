@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `api_keys` (
   UNIQUE KEY `uniq_local` (`local`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla anubis.api_keys: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.api_keys: ~1 rows (aproximadamente)
 INSERT INTO `api_keys` (`id`, `local`, `api_key`, `activo`, `creado_en`, `actualizado_en`) VALUES
 	(1, 'Local_1', '4f7d3a5c09abf0de7c84b5f0c9a1f54b3a6d9e15c2fa11e8f9c32d8c927a1d44', 1, '2025-09-19 17:53:43', '2025-09-19 17:53:43');
 
@@ -4031,7 +4031,7 @@ CREATE TABLE IF NOT EXISTS `datos_empresa` (
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla anubis.datos_empresa: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.datos_empresa: ~1 rows (aproximadamente)
 INSERT INTO `datos_empresa` (`codigo`, `nombre`, `razon_social`, `anio`, `actividad`, `domicilio`, `codigo_postal`, `poblacion`, `provincia`, `pais`, `telefono_1`, `telefono_2`, `fax`, `email`, `nif`, `web`, `afiliacion`, `registro_mercantil`, `observaciones`, `dual_flag`, `decimales_pesetas`, `decimales_euros`, `decimales_cantidades`, `decimales_descuento`, `avisar_riesgo`, `actualizar_pvp`, `archivo_imagen`, `caja_recibos`, `caja_pagos`, `estado`, `cliente_nulo`, `cliente_tickets`, `moneda_principal`, `cliente_tarjeta`, `contrasena`, `carpeta_imagenes`, `licencia`, `importe_minimo_fac_simpl`, `importe_minimo_fac`, `nombref`, `primer_apellido`, `segundo_apellido`) VALUES
 	(1, 'DELICIAS MARIDIAZ', 'DELICIAS MARIDIAZ', 2024, 'Hostelería', 'CALLE 16 #32-16', 0, 'PASTO', 'NARIÑO', 'COLOMBIA', '3017343302', '', '902 885 923', 'info@doscar.com', '1070943321-1', 'www.doscar.com', '', 'Tomo X Libro XXX Hoja XXXX', '', 0, 2, 0, 2, 2, 0, 0, 'empresa1.bmp', 1, 1, 'Pendiente', 0, 1, 1, 2, '', 'IMAGENES', '2004680', 400, 3000, 'QUEVIN CORDOBA', '', '');
 
@@ -4142,258 +4142,7 @@ CREATE TABLE IF NOT EXISTS `gastos` (
   KEY `idx_fecha` (`fecha`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla anubis.gastos: ~250 rows (aproximadamente)
-INSERT INTO `gastos` (`numero_gasto`, `fecha`, `importe`, `caja`, `causante`, `descripcion`, `observaciones`, `moneda`, `facturado`, `historico`) VALUES
-	(1, '2024-02-27 00:00:00', 160800.00, 0, 'CARNE SANTA ROSA', NULL, NULL, 1, 0, 1),
-	(2, '2024-02-28 00:00:00', 50000.00, 0, 'ADELANTO JOHANA', NULL, NULL, 1, 0, 2),
-	(3, '2024-02-28 00:00:00', 30000.00, 0, 'PAGO TURNO ', NULL, NULL, 1, 0, 2),
-	(4, '2024-03-02 00:00:00', 21000.00, 0, 'ROLLO TERMICO', NULL, NULL, 1, 0, 6),
-	(5, '2024-03-03 00:00:00', 200000.00, 0, 'PAPA', NULL, NULL, 1, 0, 6),
-	(6, '2024-03-03 00:00:00', 3000.00, 0, 'domi', NULL, NULL, 1, 0, 7),
-	(7, '2024-03-06 00:00:00', 9000.00, 0, 'LECHERA Y MANGOS', NULL, NULL, 1, 0, 11),
-	(8, '2024-03-06 00:00:00', 120000.00, 0, 'PAPA', NULL, NULL, 1, 0, 11),
-	(9, '2024-03-07 00:00:00', 10000.00, 0, 'AMARRAS', NULL, NULL, 1, 0, 12),
-	(10, '2024-03-07 00:00:00', 155000.00, 0, 'CANCELO PROCESO PAPA', NULL, NULL, 1, 0, 12),
-	(11, '2024-03-09 00:00:00', 345000.00, 0, 'PAGO DE PAPA PROCESOS', 'PAGO DE PAPA PROCESOS', NULL, 1, 0, 14),
-	(12, '2024-03-09 00:00:00', 30000.00, 0, 'PAGO PIAGOOO', NULL, NULL, 1, 0, 14),
-	(13, '2024-03-13 00:00:00', 60000.00, 0, 'PAPA PROCESO ', NULL, NULL, 1, 0, 18),
-	(14, '2024-03-15 00:00:00', 110000.00, 0, 'PAPA PRODUCCION', NULL, NULL, 1, 0, 20),
-	(15, '2024-03-15 00:00:00', 28700.00, 0, 'CUBIERTOS', NULL, NULL, 1, 0, 20),
-	(16, '2024-03-16 00:00:00', 14400.00, 0, 'ROLLOS TERMICOS', NULL, NULL, 1, 0, 21),
-	(17, '2024-03-16 00:00:00', 195000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 21),
-	(18, '2024-03-17 00:00:00', 18000.00, 0, 'DOMICILIOS.. MOTO TAXI PARA JENNY ', NULL, NULL, 1, 0, 23),
-	(19, '2024-03-18 00:00:00', 60000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 24),
-	(20, '2024-03-18 00:00:00', 9600.00, 0, 'CINTA', NULL, NULL, 1, 0, 24),
-	(21, '2024-03-20 00:00:00', 60000.00, 1, 'POSTRES', 'POSTRES', NULL, 1, 0, -1),
-	(22, '2024-03-20 00:00:00', 18500.00, 1, 'SILICONA', 'SILICONA', NULL, 1, 0, -1),
-	(23, '2024-03-20 00:00:00', 60000.00, 0, 'POSTRES', 'POSTRES', NULL, 1, 0, 26),
-	(24, '2024-03-20 00:00:00', 18500.00, 0, 'SILICONA', 'SILICONA', NULL, 1, 0, 26),
-	(25, '2024-03-22 00:00:00', 110000.00, 0, 'PROCESO PAPA ', NULL, NULL, 1, 0, 28),
-	(26, '2024-03-22 00:00:00', 40000.00, 0, 'GASTO BRAYAN', NULL, NULL, 1, 0, 28),
-	(27, '2024-03-23 00:00:00', 180000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 29),
-	(28, '2024-03-25 00:00:00', 400000.00, 0, 'REDES SOCIALES', NULL, NULL, 1, 0, 31),
-	(29, '2024-03-27 00:00:00', 13500.00, 0, 'ESTUCO Y AMARRAS ', NULL, NULL, 1, 0, 33),
-	(30, '2024-03-27 00:00:00', 4000.00, 0, 'MOTO TAXI JENNY ', NULL, NULL, 1, 0, 33),
-	(31, '2024-03-30 00:00:00', 230000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 36),
-	(32, '2024-03-31 00:00:00', 11800.00, 0, 'VASOS 7ONZ', NULL, NULL, 1, 0, 37),
-	(33, '2024-03-31 00:00:00', 2000.00, 0, 'SAL', NULL, NULL, 1, 0, 37),
-	(34, '2024-04-01 00:00:00', 10000.00, 0, '´PLATANO VERDE', NULL, NULL, 1, 0, 38),
-	(35, '2024-04-01 00:00:00', 3000.00, 0, 'HOJA DE MENTA ', NULL, NULL, 1, 0, 38),
-	(36, '2024-04-02 00:00:00', 3000.00, 0, 'DOMICILIO CAMILO', NULL, NULL, 1, 0, 39),
-	(37, '2024-04-05 00:00:00', 4800.00, 0, 'HOJA DE MENTA Y ABRASADERA PARA COCINA', NULL, NULL, 1, 0, 42),
-	(38, '2024-04-06 00:00:00', 280000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 43),
-	(39, '2024-04-08 00:00:00', 10000.00, 0, 'PLIEGO DE LIJA', 'PLIEGO DE LIJA', NULL, 1, 0, 45),
-	(40, '2024-04-08 00:00:00', 60000.00, 0, 'PAGO PAPA', 'PAGO PAPA ', NULL, 1, 0, 45),
-	(41, '2024-04-09 00:00:00', 60000.00, 0, 'PROCESO PAPA', 'PROCESO PAPA', NULL, 1, 0, 46),
-	(42, '2024-04-10 00:00:00', 4000.00, 0, 'MOTO TAXI PARA SARA INGUILA', NULL, NULL, 1, 0, 47),
-	(43, '2024-04-10 00:00:00', 60000.00, 0, 'PAPA PROCESO ', 'PAPA PROCESO', NULL, 1, 0, 47),
-	(44, '2024-04-11 00:00:00', 10000.00, 0, 'PLATANO AMARILLO ', NULL, NULL, 1, 0, 48),
-	(45, '2024-04-12 00:00:00', 120000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 49),
-	(46, '2024-04-13 00:00:00', 180000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 50),
-	(47, '2024-04-15 00:00:00', 75000.00, 0, 'PROCESO PAPA ', NULL, NULL, 1, 0, 52),
-	(48, '2024-04-17 00:00:00', 2200.00, 0, 'cinta', 'cinta', NULL, 1, 0, 54),
-	(49, '2024-04-18 00:00:00', 70000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 55),
-	(50, '2024-04-21 00:00:00', 5000.00, 0, 'pago mototaxi dia 20/04/24 sra lucy', NULL, NULL, 1, 0, 58),
-	(51, '2024-04-23 00:00:00', 80000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 60),
-	(52, '2024-04-24 00:00:00', 45000.00, 0, 'PROCESOS PAPA', NULL, NULL, 1, 0, 61),
-	(53, '2024-04-25 00:00:00', 5000.00, 0, 'BOLSAS INDUSTRIALES', NULL, NULL, 1, 0, 62),
-	(54, '2024-04-26 00:00:00', 3800.00, 0, 'PANELA', NULL, NULL, 1, 0, 63),
-	(55, '2024-04-26 00:00:00', 2000.00, 0, 'SUAVITEL', NULL, NULL, 1, 0, 63),
-	(56, '2024-04-26 00:00:00', 90000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 63),
-	(57, '2024-04-27 00:00:00', 180000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 64),
-	(58, '2024-05-01 00:00:00', 41000.00, 0, 'PLTANO AMARILLO , VERDE Y AJI', NULL, NULL, 1, 0, 68),
-	(59, '2024-05-03 00:00:00', 60000.00, 0, 'PAGO PAPA PROCESOS', NULL, NULL, 1, 0, 70),
-	(60, '2024-05-04 00:00:00', 200000.00, 0, 'PAGO PROCESOS PAPA', NULL, NULL, 1, 0, 71),
-	(61, '2024-05-06 00:00:00', 8000.00, 0, 'C1 AUTORIZADOS POR ANGIE', NULL, NULL, 1, 0, 73),
-	(62, '2024-05-06 00:00:00', 2500.00, 0, 'AREPAS ', NULL, NULL, 1, 0, 73),
-	(63, '2024-05-06 00:00:00', 8500.00, 0, 'BOMBA DESTAPA BAÑOS', NULL, NULL, 1, 0, 73),
-	(64, '2024-05-07 00:00:00', 75000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 74),
-	(65, '2024-05-08 00:00:00', 2500.00, 0, 'PAQUETE DE AREPA', NULL, NULL, 1, 0, 75),
-	(66, '2024-05-08 00:00:00', 60000.00, 0, 'PAPA PROCESOS', NULL, NULL, 1, 0, 75),
-	(67, '2024-05-10 00:00:00', 95000.00, 0, 'papa proceso', NULL, NULL, 1, 0, 77),
-	(68, '2024-05-10 00:00:00', 9000.00, 0, 'TRAPOS', NULL, NULL, 1, 0, 77),
-	(69, '2024-05-11 00:00:00', 230000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 78),
-	(70, '2024-05-14 00:00:00', 800.00, 0, 'PIMIENTA', NULL, NULL, 1, 0, 81),
-	(71, '2024-05-14 00:00:00', 4000.00, 0, 'MOTO TAXI PARA MAIRA MONTENEGRO', NULL, NULL, 1, 0, 81),
-	(72, '2024-05-16 00:00:00', 8400.00, 0, 'JAMON', NULL, NULL, 1, 0, 83),
-	(73, '2024-05-17 00:00:00', 35000.00, 0, 'ZAPATOS PARA CRISTIAN PASCUMAL', NULL, NULL, 1, 0, 84),
-	(74, '2024-05-18 00:00:00', 200000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 85),
-	(75, '2024-05-20 00:00:00', 55000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 87),
-	(76, '2024-05-21 00:00:00', 35000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 88),
-	(77, '2024-05-23 00:00:00', 50000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 90),
-	(78, '2024-05-23 00:00:00', 20000.00, 0, 'PLATANO', NULL, NULL, 1, 0, 90),
-	(79, '2024-05-24 00:00:00', 80000.00, 0, 'PAPA PROCESO', NULL, NULL, 1, 0, 91),
-	(80, '2024-05-25 00:00:00', 180000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 92),
-	(81, '2024-05-25 00:00:00', 14000.00, 0, 'VELAS MOTIVO NO HABIA LUZ', NULL, NULL, 1, 0, 92),
-	(82, '2024-05-27 00:00:00', 12300.00, 0, 'CEMENTO Y REJILLAS PARA ARREGLO COCINA', NULL, NULL, 1, 0, 94),
-	(83, '2024-05-28 00:00:00', 50000.00, 0, 'UNIFORME LILIANA HIDALGO', NULL, NULL, 1, 0, 95),
-	(84, '2024-05-28 00:00:00', 40000.00, 0, 'PROCESOS PAPA JHON RODRIGUEZ', NULL, NULL, 1, 0, 95),
-	(85, '2024-05-30 00:00:00', 40000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 97),
-	(86, '2024-05-31 00:00:00', 105000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 98),
-	(87, '2024-05-31 00:00:00', 4000.00, 0, 'PAGO MOTO TAXI MAIRA', NULL, NULL, 1, 0, 98),
-	(88, '2024-06-01 00:00:00', 8000.00, 0, 'COPAS', NULL, NULL, 1, 0, 99),
-	(89, '2024-06-01 00:00:00', 110000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 99),
-	(90, '2024-06-02 00:00:00', 5000.00, 0, 'MARACUYA', NULL, NULL, 1, 0, 100),
-	(91, '2024-06-07 00:00:00', 80000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 105),
-	(92, '2024-06-08 00:00:00', 220000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 106),
-	(93, '2024-06-09 00:00:00', 4000.00, 0, 'MECHERA Y CUCHARAS', NULL, NULL, 1, 0, 107),
-	(94, '2024-06-12 00:00:00', 6300.00, 0, 'CHURRUSCO PARA EL BAÑO', NULL, NULL, 1, 0, 110),
-	(95, '2024-06-14 00:00:00', 105000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 112),
-	(96, '2024-06-15 00:00:00', 2600.00, 0, 'BOTELLA DE AGUA', NULL, NULL, 1, 0, 113),
-	(97, '2024-06-15 00:00:00', 200000.00, 0, 'PROCESO PAPA', NULL, NULL, 1, 0, 113),
-	(98, '2024-06-20 00:00:00', 25000.00, 0, 'pago johana', NULL, NULL, 1, 0, 118),
-	(99, '2024-06-23 00:00:00', 11200.00, 0, 'VASOS 7 ONZ', NULL, NULL, 1, 0, 121),
-	(100, '2024-06-24 00:00:00', 110000.00, 0, 'CAMBIO DE HDMI ', NULL, NULL, 1, 0, 122),
-	(101, '2024-06-28 00:00:00', 2000.00, 0, 'durita y bicarbonato', NULL, NULL, 1, 0, 126),
-	(102, '2024-06-29 00:00:00', 3000.00, 0, 'pastilla maira ', NULL, NULL, 1, 0, 127),
-	(103, '2024-07-01 00:00:00', 36300.00, 0, 'salsa de maiz y soda', NULL, NULL, 1, 0, 129),
-	(104, '2024-07-02 00:00:00', 15000.00, 0, 'pago aseo Maira', NULL, NULL, 1, 0, 130),
-	(105, '2024-07-05 00:00:00', 30000.00, 0, 'PAGO A JOHANA PROCESOS', NULL, NULL, 1, 0, 133),
-	(106, '2024-07-07 00:00:00', 5200.00, 0, 'CHAMPIÑONES', NULL, NULL, 1, 0, 136),
-	(107, '2024-07-08 00:00:00', 3500.00, 0, 'power', NULL, NULL, 1, 0, 137),
-	(108, '2024-07-10 00:00:00', 5000.00, 0, 'TRAPO COCINA', NULL, NULL, 1, 0, 139),
-	(109, '2024-07-11 00:00:00', 35000.00, 0, 'PAGO A CAMILO APOYO MESAS', NULL, NULL, 1, 0, 140),
-	(110, '2024-07-13 00:00:00', 5000.00, 0, 'PAPA FOSFORITO', NULL, NULL, 1, 0, 142),
-	(111, '2024-07-14 00:00:00', 140000.00, 0, 'CERVEZA POKER', NULL, NULL, 1, 0, 143),
-	(112, '2024-07-15 00:00:00', 7000.00, 0, 'CARRERA COCA COLAS', NULL, NULL, 1, 0, 144),
-	(113, '2024-07-17 00:00:00', 48500.00, 0, 'BROCHAS, RODILLO Y ESPATULA', NULL, NULL, 1, 0, 146),
-	(114, '2024-07-18 00:00:00', 2000.00, 0, 'TOMATE ROJO', NULL, NULL, 1, 0, 147),
-	(115, '2024-07-23 00:00:00', 240000.00, 0, 'PAGO A LA SEÑORA ESTEFANIA AUTORIZADO ', 'BRAYAN ', NULL, 1, 0, 152),
-	(116, '2024-08-03 00:00:00', 20000.00, 0, 'CARNE DE CERDO', NULL, NULL, 1, 0, 163),
-	(117, '2024-08-04 00:00:00', 12500.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 164),
-	(118, '2024-08-04 00:00:00', 12500.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 164),
-	(119, '2024-08-06 00:00:00', 7500.00, 0, 'AREPAS', NULL, NULL, 1, 0, 166),
-	(120, '2024-08-13 00:00:00', 10000.00, 0, 'LIMON', NULL, NULL, 1, 0, 173),
-	(121, '2024-08-15 00:00:00', 7000.00, 0, 'PASTILLA PARA CRISTIAN PASCUMAL', 'AUTORIZADO POR DOÑA MARTHA', NULL, 1, 0, 175),
-	(122, '2024-08-19 00:00:00', 15000.00, 0, 'PANAL DE HUEVOS', NULL, NULL, 1, 0, 179),
-	(123, '2024-08-20 00:00:00', 4500.00, 0, 'CINTA', NULL, NULL, 1, 0, 180),
-	(124, '2024-08-22 00:00:00', 8500.00, 0, 'DIABLO ROJO', NULL, NULL, 1, 0, 182),
-	(125, '2024-08-23 00:00:00', 8500.00, 0, 'DIABLO ROJO', NULL, NULL, 1, 0, 183),
-	(126, '2024-08-24 00:00:00', 1500.00, 0, 'COFIA', NULL, NULL, 1, 0, 184),
-	(127, '2024-08-24 00:00:00', 115000.00, 0, 'PAGO JOHANA PROCESOS', NULL, NULL, 1, 0, 184),
-	(128, '2024-08-24 00:00:00', 40000.00, 0, 'PAGO TURNO LILIANA', NULL, NULL, 1, 0, 184),
-	(129, '2024-08-24 00:00:00', 43300.00, 0, 'PAGO TURNO ALEJANDRO GUERRA', NULL, NULL, 1, 0, 184),
-	(130, '2024-08-27 00:00:00', 6000.00, 0, 'AMBIENTADOR', NULL, NULL, 1, 0, 187),
-	(131, '2024-08-30 00:00:00', 1400.00, 0, 'PALILLOS', NULL, NULL, 1, 0, 190),
-	(132, '2024-09-13 00:00:00', 150200.00, 0, 'GAS', NULL, NULL, 1, 0, 204),
-	(133, '2024-09-20 00:00:00', 3000.00, 0, 'facturero', NULL, NULL, 1, 0, 211),
-	(134, '2024-09-23 00:00:00', 80000.00, 0, 'PAGO TARJETA', NULL, NULL, 1, 0, 214),
-	(135, '2024-09-27 00:00:00', 17000.00, 0, 'DEVOLUCION DE DINERO Y UNA BOLSA DE BASU', NULL, NULL, 1, 0, 218),
-	(136, '2024-10-04 00:00:00', 20000.00, 0, 'papa vapor', NULL, NULL, 1, 0, 225),
-	(137, '2024-10-06 00:00:00', 225000.00, 0, 'arreglo  nevera', NULL, NULL, 1, 0, 227),
-	(138, '2024-10-07 00:00:00', 9000.00, 0, 'velas', NULL, NULL, 1, 0, 228),
-	(139, '2024-10-07 00:00:00', 2000.00, 0, 'facturero', NULL, NULL, 1, 0, 228),
-	(140, '2024-10-08 00:00:00', 327000.00, 0, 'GAS', NULL, NULL, 1, 0, 229),
-	(141, '2024-10-10 00:00:00', 18500.00, 0, 'REGRESO CLIENTE', NULL, NULL, 1, 0, 231),
-	(142, '2024-10-11 00:00:00', 9200.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 232),
-	(143, '2024-10-14 00:00:00', 5800.00, 0, 'MIGA  DE PAN', NULL, NULL, 1, 0, 235),
-	(144, '2024-10-26 00:00:00', 40000.00, 0, 'CARNE CERDO ', NULL, NULL, 1, 0, 247),
-	(145, '2024-10-31 00:00:00', 6000.00, 0, 'PAQUETE DE DULCES', NULL, NULL, 1, 0, 252),
-	(146, '2024-11-03 00:00:00', 20000.00, 0, 'LIMON', 'AUTORIZA DOÑA MARTHA', NULL, 1, 0, 255),
-	(147, '2024-11-05 00:00:00', 250000.00, 0, 'GANADOR CONCURSO', NULL, NULL, 1, 0, 257),
-	(148, '2024-11-08 00:00:00', 6000.00, 0, 'REJILLA  CON SOSCO', NULL, NULL, 1, 0, 260),
-	(149, '2024-11-11 00:00:00', 25000.00, 0, 'REVICION CONGELADOR ', NULL, NULL, 1, 0, 263),
-	(150, '2024-11-12 00:00:00', 180000.00, 0, 'RECARGA AL REFRIGERADOR', NULL, NULL, 1, 0, 264),
-	(151, '2024-11-12 00:00:00', 50000.00, 0, 'ARERGLO AL LAVA PLATOS', NULL, NULL, 1, 0, 264),
-	(152, '2024-11-15 00:00:00', 1200.00, 0, 'copias ', NULL, NULL, 1, 0, 267),
-	(153, '2024-11-15 00:00:00', 117200.00, 0, 'GAS', NULL, NULL, 1, 0, 267),
-	(154, '2024-11-15 00:00:00', 50000.00, 0, 'DOTACION ZAPATOS GABRIEL', NULL, NULL, 1, 0, 267),
-	(155, '2024-11-19 00:00:00', 259200.00, 0, 'gas', NULL, NULL, 1, 0, 271),
-	(156, '2024-11-19 00:00:00', 18600.00, 0, 'trapeador', NULL, NULL, 1, 0, 271),
-	(157, '2024-11-22 00:00:00', 15000.00, 0, 'SACADA DE ESCOMBROS', NULL, NULL, 1, 0, 274),
-	(158, '2024-11-23 00:00:00', 8000.00, 0, 'COMANDEROS', NULL, NULL, 1, 0, 275),
-	(159, '2024-11-29 00:00:00', 27200.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 281),
-	(160, '2024-12-04 00:00:00', 13000.00, 0, 'espatula', NULL, NULL, 1, 0, 286),
-	(161, '2024-12-11 00:00:00', 12800.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 293),
-	(162, '2024-12-15 00:00:00', 10000.00, 0, 'LIMON', NULL, NULL, 1, 0, 297),
-	(163, '2024-12-17 00:00:00', 2000.00, 0, 'AJI', NULL, NULL, 1, 0, 299),
-	(164, '2024-12-21 00:00:00', 42000.00, 0, '2 SIX DE POKER', NULL, NULL, 1, 0, 303),
-	(165, '2025-01-01 00:00:00', 30000.00, 0, 'LIMON', NULL, NULL, 1, 0, 312),
-	(166, '2025-01-02 00:00:00', 6000.00, 0, 'TAPAS 16 ONZ', NULL, NULL, 1, 0, 313),
-	(167, '2025-01-06 00:00:00', 5000.00, 0, 'COMANDEROS', NULL, NULL, 1, 0, 317),
-	(168, '2025-01-07 00:00:00', 10000.00, 0, NULL, 'TAXI MESERA', NULL, 1, 0, 318),
-	(169, '2025-01-22 00:00:00', 12000.00, 0, NULL, 'PAPA', NULL, 1, 0, 333),
-	(170, '2025-01-26 00:00:00', 50000.00, 0, 'COMPRA DE ZAPATOS FELIP\'E ', NULL, NULL, 1, 0, 337),
-	(171, '2025-02-10 00:00:00', 82000.00, 0, 'COMPRA ', 'QUESO CHEEDAR BLOQUE 2.27 KG', NULL, 1, 0, 352),
-	(172, '2025-02-13 00:00:00', 50000.00, 0, 'COMPRA', 'ZAPATOS JORGE ANGULO ', NULL, 1, 0, 355),
-	(173, '2025-02-16 00:00:00', 50000.00, 0, 'COMPRA', 'ARAGAN PARA LA COCINA ', NULL, 1, 0, 358),
-	(174, '2025-02-23 00:00:00', 18000.00, 0, 'COMPRA ', 'PANAL DE HUEVOS ', NULL, 1, 0, 365),
-	(175, '2025-02-26 00:00:00', 42500.00, 0, 'PAGO DE PAPA A JHON RODRIGUEZ', NULL, NULL, 1, 0, 368),
-	(176, '2025-02-27 00:00:00', 47500.00, 0, 'PAGHO DE PAPA JHON RODRIGUEZ', NULL, NULL, 1, 0, 369),
-	(177, '2025-02-28 00:00:00', 60000.00, 0, 'PAGO DE PAPA JHON RODRIGUEZ', NULL, NULL, 1, 0, 370),
-	(178, '2025-02-28 00:00:00', 6600.00, 0, 'COMPRA DE PAN DE HAMBURGUESA', NULL, NULL, 1, 0, 370),
-	(179, '2025-02-28 00:00:00', 8500.00, 0, 'COMPRA DE PAN DE HAMBURGUESA', NULL, NULL, 1, 0, 370),
-	(180, '2025-03-01 00:00:00', 140000.00, 0, 'PAGO DE PAPA A JHON RODRIGUEZ', NULL, NULL, 1, 0, 371),
-	(181, '2025-03-02 00:00:00', 4000.00, 0, 'compra de comanderos ', NULL, NULL, 1, 0, 372),
-	(182, '2025-03-04 00:00:00', 52000.00, 0, 'COMPRA ', 'CARNE DE CERDO ', NULL, 1, 0, 374),
-	(183, '2025-03-06 00:00:00', 50000.00, 0, 'PAGO ', 'SEÑOR ARREGLO FREIDOR ', NULL, 1, 0, 376),
-	(184, '2025-03-07 00:00:00', 50000.00, 0, 'COMPRA ', 'ZAPATOS SEBASTIAN CUARAN ', NULL, 1, 0, 377),
-	(185, '2025-03-11 00:00:00', 4000.00, 0, 'LIBRA DE SAL', NULL, NULL, 1, 0, 381),
-	(186, '2025-03-12 00:00:00', 20000.00, 0, 'DOSCAR ', 'SE LE PAGO A TECNICO DOSCAR ', NULL, 1, 0, 382),
-	(187, '2025-03-14 00:00:00', 4000.00, 0, 'MOTO TAXI ', 'DE COCINA ', NULL, 1, 0, 384),
-	(188, '2025-03-16 00:00:00', 4500.00, 0, '1 KILO DE AZUCAR', NULL, NULL, 1, 0, 386),
-	(189, '2025-03-17 00:00:00', 4500.00, 0, 'RECIBO CAJA MENOR', NULL, NULL, 1, 0, 387),
-	(190, '2025-03-31 00:00:00', 12900.00, 0, NULL, NULL, 'curas', 1, 0, 401),
-	(191, '2025-03-31 00:00:00', 6600.00, 0, NULL, NULL, 'pan', 1, 0, 401),
-	(192, '2025-04-02 00:00:00', 35000.00, 0, 'PAGO JUAN ACOSTA INGENIERO', NULL, NULL, 1, 0, 402),
-	(193, '2025-04-03 00:00:00', 20000.00, 0, NULL, NULL, 'tablets', 1, 0, 403),
-	(194, '2025-04-04 00:00:00', 3800.00, 0, NULL, NULL, NULL, 1, 0, 404),
-	(195, '2025-04-05 00:00:00', 50000.00, 0, NULL, NULL, 'leches', 1, 0, 405),
-	(196, '2025-04-05 00:00:00', 50000.00, 0, NULL, NULL, NULL, 1, 0, 405),
-	(197, '2025-04-05 00:00:00', 50000.00, 0, NULL, NULL, NULL, 1, 0, 405),
-	(198, '2025-04-06 00:00:00', 13700.00, 0, NULL, NULL, NULL, 1, 0, 406),
-	(199, '2025-04-07 00:00:00', 6000.00, 0, NULL, NULL, 'papa vapor', 1, 0, 407),
-	(200, '2025-04-07 00:00:00', 115000.00, 0, NULL, NULL, NULL, 1, 0, 407),
-	(201, '2025-04-11 00:00:00', 50000.00, 0, NULL, NULL, 'turno felipe bodega', 1, 0, 411),
-	(202, '2025-04-11 00:00:00', 50000.00, 0, 'TURNO NUEVO COCINA', NULL, NULL, 1, 0, 411),
-	(203, '2025-04-12 00:00:00', 45000.00, 0, NULL, NULL, 'turno nuevo cocina', 1, 0, 412),
-	(204, '2025-04-13 00:00:00', 7000.00, 0, NULL, NULL, 'platano maduro', 1, 0, 413),
-	(205, '2025-04-14 00:00:00', 9200.00, 0, NULL, NULL, 'azucar', 1, 0, 414),
-	(206, '2025-04-19 00:00:00', 30000.00, 0, NULL, 'Arreglo de conexion de internet de table', NULL, 1, 0, 419),
-	(207, '2025-04-24 00:00:00', 9000.00, 0, 'TOPES ', NULL, 'TOPES PARA COLGAR BOLSAS', 1, 0, 424),
-	(208, '2025-04-27 00:00:00', 1500.00, 0, NULL, NULL, 'BOLSA INDUSTRIAL', 1, 0, 427),
-	(209, '2025-04-29 00:00:00', 2000.00, 0, 'FOSFORERA ', NULL, 'AUTORIZADO POR DOÑA MARTA', 1, 0, 429),
-	(210, '2025-05-04 00:00:00', 2000.00, 0, 'PALO DE ESCOBA', NULL, 'AUTORIZADO POR DOÑA MARTHA', 1, 0, 434),
-	(211, '2025-05-12 00:00:00', 6800.00, 0, 'gasto de grapas , perejil y cilantro', NULL, NULL, 1, 0, 442),
-	(212, '2025-05-17 00:00:00', 5850.00, 0, NULL, NULL, 'gasto ambientador', 1, 0, 447),
-	(213, '2025-05-26 00:00:00', 30000.00, 0, 'PAGO DE PIAYO TEJAS', NULL, NULL, 1, 0, 457),
-	(214, '2025-05-31 00:00:00', 30000.00, 0, 'JUAN ACOSTA', 'GASTO DE ARREGLO DE CONEXION INTERNET', NULL, 1, 0, 463),
-	(215, '2025-06-01 00:00:00', 5000.00, 0, NULL, 'PAGO DOMICILLIO', NULL, 1, 0, 464),
-	(216, '2025-06-08 00:00:00', 33000.00, 0, NULL, 'leche ', 'leche', 1, 0, 471),
-	(217, '2025-06-08 00:00:00', 50000.00, 0, 'zapatos andrea', NULL, NULL, 1, 0, 471),
-	(218, '2025-06-10 00:00:00', 5000.00, 0, 'gasto moto luz a billares', NULL, NULL, 1, 0, 473),
-	(219, '2025-06-14 00:00:00', 81800.00, 0, 'DISTRIBUCION GENESIS RM ', NULL, 'DISTRIBUCION GENESIS RM', 1, 0, 477),
-	(220, '2025-06-15 00:00:00', 50000.00, 0, NULL, 'zapatos jhoan', NULL, 1, 0, 478),
-	(221, '2025-06-28 00:00:00', 8000.00, 0, 'PAGO TAXI DE CHAPAL A 16 POR LAS PLANCHA', NULL, NULL, 1, 0, 492),
-	(222, '2025-06-30 00:00:00', 56000.00, 0, 'COMPRA DULCE DE CHILACUAN', NULL, NULL, 1, 0, 494),
-	(223, '2025-06-30 00:00:00', 37400.00, 0, 'PAGO MAS DULCE DE CHILACUAN', NULL, NULL, 1, 0, 494),
-	(224, '2025-07-01 00:00:00', 30800.00, 0, 'DULCE DE CHILACUAN', NULL, NULL, 1, 0, 495),
-	(225, '2025-07-03 00:00:00', 9000.00, 0, 'panela', NULL, NULL, 1, 0, 497),
-	(226, '2025-07-04 00:00:00', 14400.00, 0, 'MERCA ECONOMICO', NULL, NULL, 1, 0, 498),
-	(227, '2025-07-06 00:00:00', 35000.00, 0, 'SALCHICHAS BIG', NULL, NULL, 1, 0, 500),
-	(228, '2025-07-09 00:00:00', 43000.00, 0, NULL, 'DEVOLUCION POR DOBLE TRANSFERENCIA', NULL, 1, 0, 503),
-	(229, '2025-07-10 00:00:00', 6500.00, 0, NULL, 'GASTO BROCHA', NULL, 1, 0, 504),
-	(230, '2025-07-14 00:00:00', 9700.00, 0, 'ATOMIZADOR DE BAÑOS', NULL, NULL, 1, 0, 508),
-	(231, '2025-07-20 00:00:00', 5000.00, 0, 'COPAS', NULL, NULL, 1, 0, 514),
-	(232, '2025-07-23 00:00:00', 5000.00, 0, NULL, 'CINTA DOBLE FASH', 'AUTORIZA BRAYAN ALEJANDRO ', 1, 0, 517),
-	(233, '2025-07-26 00:00:00', 5000.00, 0, 'ATOMIZADOR', NULL, 'AUTORIZO BRAYAN', 1, 0, 520),
-	(234, '2025-07-26 00:00:00', 4000.00, 0, 'chupa de baño', NULL, 'autorizo brayan', 1, 0, 520),
-	(235, '2025-07-30 00:00:00', 4000.00, 0, 'moto taxi dario', NULL, NULL, 1, 0, 524),
-	(236, '2025-08-02 00:00:00', 5000.00, 0, 'moto laura ', NULL, NULL, 1, 0, 527),
-	(237, '2025-08-02 00:00:00', 5000.00, 0, 'PAGO NOMINA', NULL, NULL, 1, 0, 527),
-	(238, '2025-08-05 00:00:00', 13500.00, 0, 'AZUCAR', NULL, NULL, 1, 0, 530),
-	(239, '2025-08-06 00:00:00', 5000.00, 0, 'MOTO DE DAYSI A BOYACA', NULL, NULL, 1, 0, 531),
-	(240, '2025-08-08 00:00:00', 20000.00, 0, 'GASTO DE CERRAJERO CANDADOS ', NULL, NULL, 1, 0, 533),
-	(241, '2025-08-09 00:00:00', 17100.00, 0, NULL, 'GASTO ACETATOS Y CINTA AUTORIZO BRAYAN', NULL, 1, 0, 534),
-	(242, '2025-08-10 00:00:00', 20000.00, 0, 'GASTO DE PLATANOS ', NULL, NULL, 1, 0, 535),
-	(243, '2025-08-15 00:00:00', 22000.00, 0, 'leche bolsas, autorizo martha ramirez', NULL, NULL, 1, 0, 540),
-	(244, '2025-08-22 00:00:00', 80500.00, 0, 'carne de cerdo', NULL, NULL, 1, 0, 547),
-	(245, '2025-08-24 00:00:00', 14900.00, 0, 'PANAL DE HUEVOS', NULL, NULL, 1, 0, 548),
-	(246, '2025-08-24 00:00:00', 31800.00, 0, 'LECHES AUTORIZO MARTHA RAMIREZ', NULL, NULL, 1, 0, 549),
-	(247, '2025-08-26 00:00:00', 4400.00, 0, NULL, 'GASTO PILAS CONTROLES', NULL, 1, 0, 551),
-	(248, '2025-08-31 00:00:00', 50000.00, 0, 'ZAPATOS ', NULL, NULL, 1, 0, 556),
-	(249, '2025-08-31 00:00:00', 8000.00, 0, NULL, 'moto taxi maidi', NULL, 1, 0, 556),
-	(250, '2025-08-31 00:00:00', 20000.00, 0, ' conpra de platanos', NULL, NULL, 1, 0, 556);
+-- Volcando datos para la tabla anubis.gastos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla anubis.historico_cierres_caja
 CREATE TABLE IF NOT EXISTS `historico_cierres_caja` (
@@ -4423,7 +4172,7 @@ CREATE TABLE IF NOT EXISTS `historico_cierres_caja` (
   PRIMARY KEY (`numero`)
 ) ENGINE=InnoDB AUTO_INCREMENT=563 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla anubis.historico_cierres_caja: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.historico_cierres_caja: ~6 rows (aproximadamente)
 INSERT INTO `historico_cierres_caja` (`numero`, `caja`, `fecha`, `suma_tickets_efectivo`, `suma_tickets_tarjeta`, `suma_recibos_clientes`, `suma_ingresos`, `suma_pagos_proveed`, `suma_pagos_repre`, `suma_pagos_camareros`, `suma_gastos`, `cobros_n_venta`, `pagos_n_compra`, `saldo_inicial_caja`, `total`, `importe_caja`, `camarero`, `ticket_inicial_efectivo`, `ticket_final_efectivo`, `ticket_inicial_tarjeta`, `ticket_final_tarjeta`, `n_tickets_incluidos_efectivo`, `n_tickets_incluidos_tarjeta`) VALUES
 	(557, 0, '2025-09-01 00:00:00', 1226700, 912400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1226700, 0, 'ADMIN', '47774', '47826', '47773', '47827', '31', '25'),
 	(558, 0, '2025-09-02 00:00:00', 2033500, 1376800, 0, 0, 164600, 0, 0, 0, 0, 0, 0, 1868900, 0, 'ADMIN', '47829', '47895', '47828', '47894', '43', '25'),
@@ -4580,7 +4329,7 @@ CREATE TABLE IF NOT EXISTS `lineas_tickets_venta` (
   PRIMARY KEY (`numero`,`linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla anubis.lineas_tickets_venta: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.lineas_tickets_venta: ~1.551 rows (aproximadamente)
 INSERT INTO `lineas_tickets_venta` (`numero`, `linea`, `articulo`, `descripcion`, `coste`, `talla`, `color`, `cantidad`, `precio`, `descuento`, `iva`, `re`, `impreso2`, `cantidad_impresa2`, `detalle`, `id_invitacion`) VALUES
 	(47773, 1, '0008', 'SP CLASICA', 0, '', NULL, 1, 8000, 0, 0, 0, 0, 0, '', NULL),
 	(47774, 1, '0014', 'SP PICANTE MED ', 0, '', NULL, 1, 23500, 0, 0, 0, 1, 1, '', NULL),
@@ -6145,7 +5894,7 @@ CREATE TABLE IF NOT EXISTS `logcontrolmodificaciones` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=715 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla anubis.logcontrolmodificaciones: ~357 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.logcontrolmodificaciones: ~714 rows (aproximadamente)
 INSERT INTO `logcontrolmodificaciones` (`ID`, `Usuario`, `Fecha`, `Evento`, `accion`, `Observaciones`) VALUES
 	(1, 'Supervisor', '2024-08-29 11:55:35', 'Login', 'Salida', ''),
 	(2, 'Usuario', '2024-08-29 23:05:13', 'Login', 'Salida', ''),
@@ -6879,7 +6628,7 @@ CREATE TABLE IF NOT EXISTS `logoperaciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49270 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla anubis.logoperaciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.logoperaciones: ~1.117 rows (aproximadamente)
 INSERT INTO `logoperaciones` (`id`, `numero`, `fecha_hora`, `terminal`, `uid`, `dispositivo`, `camarero`, `oper_reg`, `evento`, `operacion`, `descripcion`, `json`) VALUES
 	(48153, 47669, '2025-09-01 00:09:40', '38', '', 'telecomanda', 87, NULL, 'Confirmar telecomanda', 'Crear Ticket', 'Guardado Con Exito', ''),
 	(48154, 47669, '2025-09-01 00:09:40', '38', '', 'telecomanda', 87, NULL, 'Confirmar telecomanda', 'Crear Ticket', 'Mesa 6 Ocupada', ''),
@@ -9426,52 +9175,58 @@ CREATE TABLE IF NOT EXISTS `log_eventos` (
   `modulo` varchar(100) NOT NULL,
   `usuario` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla anubis.log_eventos: ~21 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.log_eventos: ~48 rows (aproximadamente)
 INSERT INTO `log_eventos` (`id`, `fecha`, `ip`, `evento`, `modulo`, `usuario`) VALUES
-	(1, '2025-09-25 20:48:18', '::1', 'Artículos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(2, '2025-09-25 20:48:20', '::1', 'Artículos compuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(3, '2025-09-25 20:48:20', '::1', 'Cajas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(4, '2025-09-25 20:48:20', '::1', 'Camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(5, '2025-09-25 20:48:22', '::1', 'Clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(6, '2025-09-25 20:48:22', '::1', 'Datos de la empresa guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(7, '2025-09-25 20:48:22', '::1', 'Familias guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(8, '2025-09-25 20:48:22', '::1', 'Formas de pago guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(9, '2025-09-25 20:48:22', '::1', 'Log de control de modificaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(10, '2025-09-25 20:48:22', '::1', 'Proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(11, '2025-09-25 20:48:22', '::1', 'Tipos de impuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(12, '2025-09-25 20:48:23', '::1', 'Gastos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(13, '2025-09-25 20:48:23', '::1', 'Cabeceras de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(14, '2025-09-25 20:48:24', '::1', 'Cabeceras de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(15, '2025-09-25 20:48:24', '::1', 'Históricos de cierre de cajas guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(16, '2025-09-25 20:48:24', '::1', 'Líneas de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(17, '2025-09-25 20:48:27', '::1', 'Líneas de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(18, '2025-09-25 20:48:28', '::1', 'Log de operaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(19, '2025-09-25 20:48:30', '::1', 'Log de usuarios guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(20, '2025-09-25 20:48:30', '::1', 'Mesas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(21, '2025-09-25 20:48:30', '::1', 'Guardar Datos', 'SincronizarManager', 'SYSTEM'),
-	(22, '2025-09-25 20:48:58', '::1', 'Artículos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(23, '2025-09-25 20:48:59', '::1', 'Artículos compuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(24, '2025-09-25 20:48:59', '::1', 'Cajas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(25, '2025-09-25 20:48:59', '::1', 'Camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(26, '2025-09-25 20:48:59', '::1', 'Clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(27, '2025-09-25 20:48:59', '::1', 'Datos de la empresa guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(28, '2025-09-25 20:48:59', '::1', 'Familias guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(29, '2025-09-25 20:48:59', '::1', 'Formas de pago guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(30, '2025-09-25 20:49:00', '::1', 'Log de control de modificaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(31, '2025-09-25 20:49:00', '::1', 'Proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(32, '2025-09-25 20:49:00', '::1', 'Tipos de impuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(33, '2025-09-25 20:49:00', '::1', 'Gastos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(34, '2025-09-25 20:49:00', '::1', 'Cabeceras de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(35, '2025-09-25 20:49:00', '::1', 'Cabeceras de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(36, '2025-09-25 20:49:00', '::1', 'Históricos de cierre de cajas guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(37, '2025-09-25 20:49:00', '::1', 'Líneas de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(38, '2025-09-25 20:49:00', '::1', 'Líneas de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(39, '2025-09-25 20:49:00', '::1', 'Log de operaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(40, '2025-09-25 20:49:00', '::1', 'Log de usuarios guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(41, '2025-09-25 20:49:00', '::1', 'Mesas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
-	(42, '2025-09-25 20:49:00', '::1', 'Guardar Datos', 'SincronizarManager', 'SYSTEM');
+	(1, '2025-09-26 15:38:42', '::1', 'Artículos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(2, '2025-09-26 15:38:45', '::1', 'Artículos compuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(3, '2025-09-26 15:38:45', '::1', 'Cajas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(4, '2025-09-26 15:38:45', '::1', 'Camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(5, '2025-09-26 15:38:52', '::1', 'Clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(6, '2025-09-26 15:38:52', '::1', 'Datos de la empresa guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(7, '2025-09-26 15:38:52', '::1', 'Familias guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(8, '2025-09-26 15:38:52', '::1', 'Formas de pago guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(9, '2025-09-26 15:38:53', '::1', 'Log de control de modificaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(10, '2025-09-26 15:38:53', '::1', 'Proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(11, '2025-09-26 15:38:53', '::1', 'Tipos de impuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(12, '2025-09-26 15:38:53', '::1', 'Gastos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(13, '2025-09-26 15:38:53', '::1', 'Cabeceras de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(14, '2025-09-26 15:38:53', '::1', 'Cabeceras de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(15, '2025-09-26 15:38:53', '::1', 'Históricos de cierre de cajas guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(16, '2025-09-26 15:38:53', '::1', 'Líneas de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(17, '2025-09-26 15:38:53', '::1', 'Líneas de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(18, '2025-09-26 15:38:53', '::1', 'Log de operaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(19, '2025-09-26 15:38:53', '::1', 'Log de usuarios guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(20, '2025-09-26 15:38:53', '::1', 'Mesas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(21, '2025-09-26 15:38:53', '::1', 'Pagos a camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(22, '2025-09-26 15:38:58', '::1', 'Pagos a proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(23, '2025-09-26 15:38:58', '::1', 'Pagos de recibos a clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(24, '2025-09-26 15:38:58', '::1', 'Guardar Datos', 'SincronizarManager', 'SYSTEM'),
+	(25, '2025-09-26 15:40:13', '::1', 'Artículos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(26, '2025-09-26 15:40:14', '::1', 'Artículos compuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(27, '2025-09-26 15:40:14', '::1', 'Cajas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(28, '2025-09-26 15:40:14', '::1', 'Camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(29, '2025-09-26 15:40:17', '::1', 'Clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(30, '2025-09-26 15:40:17', '::1', 'Datos de la empresa guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(31, '2025-09-26 15:40:17', '::1', 'Familias guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(32, '2025-09-26 15:40:17', '::1', 'Formas de pago guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(33, '2025-09-26 15:40:18', '::1', 'Log de control de modificaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(34, '2025-09-26 15:40:18', '::1', 'Proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(35, '2025-09-26 15:40:18', '::1', 'Tipos de impuestos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(36, '2025-09-26 15:40:18', '::1', 'Gastos guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(37, '2025-09-26 15:40:18', '::1', 'Cabeceras de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(38, '2025-09-26 15:40:22', '::1', 'Cabeceras de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(39, '2025-09-26 15:40:22', '::1', 'Históricos de cierre de cajas guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(40, '2025-09-26 15:40:22', '::1', 'Líneas de facturas de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(41, '2025-09-26 15:40:28', '::1', 'Líneas de tickets de venta guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(42, '2025-09-26 15:40:31', '::1', 'Log de operaciones guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(43, '2025-09-26 15:40:36', '::1', 'Log de usuarios guardado correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(44, '2025-09-26 15:40:36', '::1', 'Mesas guardadas correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(45, '2025-09-26 15:40:36', '::1', 'Pagos a camareros guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(46, '2025-09-26 15:40:36', '::1', 'Pagos a proveedores guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(47, '2025-09-26 15:40:36', '::1', 'Pagos de recibos a clientes guardados correctamente.', 'SincronizarManager', 'SYSTEM'),
+	(48, '2025-09-26 15:40:36', '::1', 'Guardar Datos', 'SincronizarManager', 'SYSTEM');
 
 -- Volcando estructura para tabla anubis.mesas
 CREATE TABLE IF NOT EXISTS `mesas` (
@@ -9544,80 +9299,6 @@ CREATE TABLE IF NOT EXISTS `motivosalidas` (
 /*!40000 ALTER TABLE `motivosalidas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `motivosalidas` ENABLE KEYS */;
 
--- Volcando estructura para tabla anubis.pagos a camareros
-CREATE TABLE IF NOT EXISTS `pagos a camareros` (
-  `Numero Pago` int NOT NULL DEFAULT '0',
-  `Importe` float DEFAULT '0',
-  `Camarero` int DEFAULT '0',
-  `Caja` int DEFAULT '0',
-  `Lugar Libramiento` varchar(40) DEFAULT NULL,
-  `Parte Trabajo` int DEFAULT '0',
-  `Orden` int DEFAULT '0',
-  `Fecha Libramiento` datetime DEFAULT NULL,
-  `Vencimiento` datetime DEFAULT NULL,
-  `Estado` varchar(15) DEFAULT 'Pagado',
-  `Descripcion` varchar(50) DEFAULT NULL,
-  `Clausulas` varchar(50) DEFAULT NULL,
-  `Banco` varchar(40) DEFAULT NULL,
-  `Domicilio Banco` varchar(40) DEFAULT NULL,
-  `Codigo Postal Banco` int DEFAULT '0',
-  `Poblacion Banco` varchar(40) DEFAULT NULL,
-  `Provincia Banco` varchar(25) DEFAULT NULL,
-  `Pais Banco` varchar(25) DEFAULT NULL,
-  `Entidad` varchar(4) DEFAULT NULL,
-  `Sucursal` varchar(4) DEFAULT NULL,
-  `DC` varchar(2) DEFAULT NULL,
-  `Cuenta` varchar(10) DEFAULT NULL,
-  `Observaciones` longtext,
-  `Moneda` int DEFAULT '1',
-  `Facturado` tinyint(1) DEFAULT '0',
-  `Historico` int DEFAULT '-1',
-  `IBAN` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`Numero Pago`),
-  KEY `Vencimiento` (`Vencimiento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla anubis.pagos a camareros: 0 rows
-/*!40000 ALTER TABLE `pagos a camareros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pagos a camareros` ENABLE KEYS */;
-
--- Volcando estructura para tabla anubis.pagos a proveedores
-CREATE TABLE IF NOT EXISTS `pagos a proveedores` (
-  `Numero Pago` int NOT NULL DEFAULT '0',
-  `Importe` float DEFAULT '0',
-  `Proveedor` int DEFAULT '0',
-  `Caja` int DEFAULT '0',
-  `Lugar Libramiento` varchar(40) DEFAULT NULL,
-  `Factura` int DEFAULT '0',
-  `Orden` int DEFAULT '0',
-  `Fecha Libramiento` datetime DEFAULT NULL,
-  `Vencimiento` datetime DEFAULT NULL,
-  `Estado` varchar(15) DEFAULT 'Pagado',
-  `Descripcion` varchar(50) DEFAULT NULL,
-  `Clausulas` varchar(50) DEFAULT NULL,
-  `Banco` varchar(40) DEFAULT NULL,
-  `Domicilio Banco` varchar(40) DEFAULT NULL,
-  `Codigo Postal Banco` int DEFAULT '0',
-  `Poblacion Banco` varchar(40) DEFAULT NULL,
-  `Provincia Banco` varchar(25) DEFAULT NULL,
-  `Pais Banco` varchar(25) DEFAULT NULL,
-  `Entidad` varchar(4) DEFAULT NULL,
-  `Sucursal` varchar(4) DEFAULT NULL,
-  `DC` varchar(2) DEFAULT NULL,
-  `Cuenta` varchar(10) DEFAULT NULL,
-  `Observaciones` longtext,
-  `Moneda` int DEFAULT '1',
-  `Facturado` tinyint(1) DEFAULT '0',
-  `Historico` int DEFAULT '-1',
-  `IBAN` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`Numero Pago`),
-  KEY `Vencimiento` (`Vencimiento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
-
--- Volcando datos para la tabla anubis.pagos a proveedores: 0 rows
-/*!40000 ALTER TABLE `pagos a proveedores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pagos a proveedores` ENABLE KEYS */;
-
 -- Volcando estructura para tabla anubis.pagos a representantes
 CREATE TABLE IF NOT EXISTS `pagos a representantes` (
   `Numero Pago` int NOT NULL DEFAULT '0',
@@ -9654,6 +9335,87 @@ CREATE TABLE IF NOT EXISTS `pagos a representantes` (
 -- Volcando datos para la tabla anubis.pagos a representantes: 0 rows
 /*!40000 ALTER TABLE `pagos a representantes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pagos a representantes` ENABLE KEYS */;
+
+-- Volcando estructura para tabla anubis.pagos_a_camareros
+CREATE TABLE IF NOT EXISTS `pagos_a_camareros` (
+  `numero_pago` int NOT NULL DEFAULT '0',
+  `importe` decimal(10,2) DEFAULT '0.00',
+  `camarero` int DEFAULT '0',
+  `caja` int DEFAULT '0',
+  `lugar_libramiento` varchar(40) DEFAULT NULL,
+  `parte_trabajo` int DEFAULT '0',
+  `orden` int DEFAULT '0',
+  `fecha_libramiento` datetime DEFAULT NULL,
+  `vencimiento` datetime DEFAULT NULL,
+  `estado` varchar(15) DEFAULT 'Pagado',
+  `descripcion` varchar(50) DEFAULT NULL,
+  `clausulas` varchar(50) DEFAULT NULL,
+  `banco` varchar(40) DEFAULT NULL,
+  `domicilio_banco` varchar(40) DEFAULT NULL,
+  `codigo_postal_banco` int DEFAULT '0',
+  `poblacion_banco` varchar(40) DEFAULT NULL,
+  `provincia_banco` varchar(25) DEFAULT NULL,
+  `pais_banco` varchar(25) DEFAULT NULL,
+  `entidad` varchar(4) DEFAULT NULL,
+  `sucursal` varchar(4) DEFAULT NULL,
+  `dc` varchar(2) DEFAULT NULL,
+  `cuenta` varchar(10) DEFAULT NULL,
+  `observaciones` longtext,
+  `moneda` int DEFAULT '1',
+  `facturado` tinyint(1) DEFAULT '0',
+  `historico` int DEFAULT '-1',
+  `iban` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`numero_pago`),
+  KEY `idx_vencimiento` (`vencimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- Volcando datos para la tabla anubis.pagos_a_camareros: ~3 rows (aproximadamente)
+INSERT INTO `pagos_a_camareros` (`numero_pago`, `importe`, `camarero`, `caja`, `lugar_libramiento`, `parte_trabajo`, `orden`, `fecha_libramiento`, `vencimiento`, `estado`, `descripcion`, `clausulas`, `banco`, `domicilio_banco`, `codigo_postal_banco`, `poblacion_banco`, `provincia_banco`, `pais_banco`, `entidad`, `sucursal`, `dc`, `cuenta`, `observaciones`, `moneda`, `facturado`, `historico`, `iban`) VALUES
+	(750, 40000.00, 15, 0, NULL, 0, 0, '2025-09-05 00:00:00', '2025-09-05 00:00:00', 'Pagado', 'TURNO KHATRINE MESAS', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 561, NULL),
+	(751, 40000.00, 84, 0, NULL, 0, 0, '2025-09-06 00:00:00', '2025-09-06 00:00:00', 'Pagado', 'TURNO LAURA MESAS', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 562, NULL),
+	(752, 10000.00, 84, 0, NULL, 0, 0, '2025-09-06 00:00:00', '2025-09-06 00:00:00', 'Pagado', 'TURNO MESAS LAURA', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 562, NULL);
+
+-- Volcando estructura para tabla anubis.pagos_a_proveedores
+CREATE TABLE IF NOT EXISTS `pagos_a_proveedores` (
+  `numero_pago` int NOT NULL DEFAULT '0',
+  `importe` decimal(10,2) DEFAULT '0.00',
+  `proveedor` int DEFAULT '0',
+  `caja` int DEFAULT '0',
+  `lugar_libramiento` varchar(40) DEFAULT NULL,
+  `factura` int DEFAULT '0',
+  `orden` int DEFAULT '0',
+  `fecha_libramiento` datetime DEFAULT NULL,
+  `vencimiento` datetime DEFAULT NULL,
+  `estado` varchar(15) DEFAULT 'Pagado',
+  `descripcion` varchar(50) DEFAULT NULL,
+  `clausulas` varchar(50) DEFAULT NULL,
+  `banco` varchar(40) DEFAULT NULL,
+  `domicilio_banco` varchar(40) DEFAULT NULL,
+  `codigo_postal_banco` int DEFAULT '0',
+  `poblacion_banco` varchar(40) DEFAULT NULL,
+  `provincia_banco` varchar(25) DEFAULT NULL,
+  `pais_banco` varchar(25) DEFAULT NULL,
+  `entidad` varchar(4) DEFAULT NULL,
+  `sucursal` varchar(4) DEFAULT NULL,
+  `dc` varchar(2) DEFAULT NULL,
+  `cuenta` varchar(10) DEFAULT NULL,
+  `observaciones` longtext,
+  `moneda` int DEFAULT '1',
+  `facturado` tinyint(1) DEFAULT '0',
+  `historico` int DEFAULT '-1',
+  `iban` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`numero_pago`),
+  KEY `idx_vencimiento` (`vencimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- Volcando datos para la tabla anubis.pagos_a_proveedores: ~6 rows (aproximadamente)
+INSERT INTO `pagos_a_proveedores` (`numero_pago`, `importe`, `proveedor`, `caja`, `lugar_libramiento`, `factura`, `orden`, `fecha_libramiento`, `vencimiento`, `estado`, `descripcion`, `clausulas`, `banco`, `domicilio_banco`, `codigo_postal_banco`, `poblacion_banco`, `provincia_banco`, `pais_banco`, `entidad`, `sucursal`, `dc`, `cuenta`, `observaciones`, `moneda`, `facturado`, `historico`, `iban`) VALUES
+	(480, 164600.00, 3, 0, NULL, 0, 0, '2025-09-02 00:00:00', '2025-09-02 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 558, NULL),
+	(481, 277700.00, 3, 0, NULL, 0, 0, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 559, NULL),
+	(482, 52500.00, 2, 0, NULL, 0, 0, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 559, NULL),
+	(483, 164000.00, 2, 0, NULL, 0, 0, '2025-09-04 00:00:00', '2025-09-04 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 560, NULL),
+	(484, 159700.00, 3, 0, NULL, 0, 0, '2025-09-05 00:00:00', '2025-09-05 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 561, NULL),
+	(485, 165100.00, 3, 0, NULL, 0, 0, '2025-09-06 00:00:00', '2025-09-06 00:00:00', 'Pagado', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 562, NULL);
 
 -- Volcando estructura para tabla anubis.proveedores
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -9707,7 +9469,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   KEY `idx_razon_social` (`razon_social`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla anubis.proveedores: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.proveedores: ~10 rows (aproximadamente)
 INSERT INTO `proveedores` (`codigo`, `razon_social`, `tipo_proveedor`, `titular`, `domicilio`, `codigo_postal`, `poblacion`, `provincia`, `pais`, `telefono1`, `telefono2`, `fax`, `email`, `nif`, `web`, `codigo_cliente`, `persona_contacto`, `telefono_contacto`, `archivo_imagen`, `observaciones`, `tabla_descuento`, `descuento_pp`, `impuestos`, `forma_pago`, `dia_pago_1`, `dia_pago_2`, `banco`, `domicilio_banco`, `codigo_postal_banco`, `poblacion_banco`, `provincia_banco`, `pais_banco`, `entidad`, `sucursal`, `dc`, `cuenta`, `portes`, `domicilio_envio`, `codigo_postal_envio`, `poblacion_envio`, `provincia_envio`, `pais_envio`, `antiguedad`, `riesgo`, `aviso`, `iban`) VALUES
 	(1, 'Suministros de Hostelería, S.A.', 'Comestibles', '', 'Poligono Industral Norte', 28300, 'Madrid', 'Madrid', '', '91-6666666', '', '', 'suministros@hosteleria.es', 'B-77777777', '', '175', '', '', '', '', 1, 0, 'I', 1, 0, 0, '', '', 0, '', '', '', '', '', '', '', 'D', '', 0, '', '', '', '2001-07-12 00:00:00', 0, '', ''),
 	(2, 'MEGA FRUIT', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', 0, 0, 'I', 0, 0, 0, '', '', 0, '', '', '', '', '', '', '', 'D', '', 0, '', '', '', '2024-02-06 00:00:00', 0, '', ''),
@@ -9720,42 +9482,57 @@ INSERT INTO `proveedores` (`codigo`, `razon_social`, `tipo_proveedor`, `titular`
 	(9, 'NAPOLES', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', 0, 0, 'I', 0, 0, 0, '', '', 0, '', '', '', '', '', '', '', 'D', '', 0, '', '', '', '2025-04-04 00:00:00', 0, '', ''),
 	(10, '[Ninguno]', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 0, 'I', 0, 0, 0, '', '', 0, '', '', '', '', '', '', '', 'D', '', 0, '', '', '', '2001-07-12 00:00:00', 0, '', '');
 
--- Volcando estructura para tabla anubis.recibos de clientes
-CREATE TABLE IF NOT EXISTS `recibos de clientes` (
-  `Numero Recibo` int NOT NULL DEFAULT '0',
-  `Importe` float DEFAULT '0',
-  `Cliente` int DEFAULT '0',
-  `Caja` int DEFAULT '0',
-  `Lugar Libramiento` varchar(40) DEFAULT NULL,
-  `Factura` int DEFAULT '0',
-  `Orden` int DEFAULT '0',
-  `Fecha Libramiento` datetime DEFAULT NULL,
-  `Vencimiento` datetime DEFAULT NULL,
-  `Estado` varchar(15) DEFAULT 'Pagado',
-  `Descripcion` varchar(50) DEFAULT NULL,
-  `Clausulas` varchar(50) DEFAULT NULL,
-  `Banco` varchar(40) DEFAULT NULL,
-  `Domicilio Banco` varchar(40) DEFAULT NULL,
-  `Codigo Postal Banco` int DEFAULT '0',
-  `Poblacion Banco` varchar(40) DEFAULT NULL,
-  `Provincia Banco` varchar(25) DEFAULT NULL,
-  `Pais Banco` varchar(25) DEFAULT NULL,
-  `Entidad` varchar(4) DEFAULT NULL,
-  `Sucursal` varchar(4) DEFAULT NULL,
-  `DC` varchar(2) DEFAULT NULL,
-  `Cuenta` varchar(10) DEFAULT NULL,
-  `Observaciones` longtext,
-  `Moneda` int DEFAULT '1',
-  `Facturado` tinyint(1) DEFAULT '0',
-  `Historico` int DEFAULT '-1',
-  `IBAN` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`Numero Recibo`),
-  KEY `Vencimiento` (`Vencimiento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+-- Volcando estructura para tabla anubis.recibos_de_clientes
+CREATE TABLE IF NOT EXISTS `recibos_de_clientes` (
+  `numero_recibo` int NOT NULL DEFAULT '0',
+  `importe` decimal(10,2) DEFAULT '0.00',
+  `cliente` int DEFAULT '0',
+  `caja` int DEFAULT '0',
+  `lugar_libramiento` varchar(40) DEFAULT NULL,
+  `factura` int DEFAULT '0',
+  `orden` int DEFAULT '0',
+  `fecha_libramiento` datetime DEFAULT NULL,
+  `vencimiento` datetime DEFAULT NULL,
+  `estado` varchar(15) DEFAULT 'Pagado',
+  `descripcion` varchar(50) DEFAULT NULL,
+  `clausulas` varchar(50) DEFAULT NULL,
+  `banco` varchar(40) DEFAULT NULL,
+  `domicilio_banco` varchar(40) DEFAULT NULL,
+  `codigo_postal_banco` int DEFAULT '0',
+  `poblacion_banco` varchar(40) DEFAULT NULL,
+  `provincia_banco` varchar(25) DEFAULT NULL,
+  `pais_banco` varchar(25) DEFAULT NULL,
+  `entidad` varchar(4) DEFAULT NULL,
+  `sucursal` varchar(4) DEFAULT NULL,
+  `dc` varchar(2) DEFAULT NULL,
+  `cuenta` varchar(10) DEFAULT NULL,
+  `observaciones` longtext,
+  `moneda` int DEFAULT '1',
+  `facturado` tinyint(1) DEFAULT '0',
+  `historico` int DEFAULT '-1',
+  `iban` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`numero_recibo`),
+  KEY `idx_vencimiento` (`vencimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla anubis.recibos de clientes: 0 rows
-/*!40000 ALTER TABLE `recibos de clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `recibos de clientes` ENABLE KEYS */;
+-- Volcando datos para la tabla anubis.recibos_de_clientes: ~16 rows (aproximadamente)
+INSERT INTO `recibos_de_clientes` (`numero_recibo`, `importe`, `cliente`, `caja`, `lugar_libramiento`, `factura`, `orden`, `fecha_libramiento`, `vencimiento`, `estado`, `descripcion`, `clausulas`, `banco`, `domicilio_banco`, `codigo_postal_banco`, `poblacion_banco`, `provincia_banco`, `pais_banco`, `entidad`, `sucursal`, `dc`, `cuenta`, `observaciones`, `moneda`, `facturado`, `historico`, `iban`) VALUES
+	(1626, 6175.00, 1039, 1, 'PASTO', 2401628, 1, '2025-09-01 00:00:00', '2025-09-01 00:00:00', 'Pendiente', 'Cobro Factura nº 2401628 del 01-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1627, 19950.00, 1172, 1, 'PASTO', 2401629, 1, '2025-09-01 00:00:00', '2025-09-01 00:00:00', 'Pendiente', 'Cobro Factura nº 2401629 del 01-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1628, 13775.00, 1015, 1, 'PASTO', 2401630, 1, '2025-09-01 00:00:00', '2025-09-01 00:00:00', 'Pendiente', 'Cobro Factura nº 2401630 del 01-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1629, 19950.00, 1039, 1, 'PASTO', 2401631, 1, '2025-09-01 00:00:00', '2025-09-01 00:00:00', 'Pendiente', 'Cobro Factura nº 2401631 del 01-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1630, 23275.00, 1045, 1, 'PASTO', 2401632, 1, '2025-09-01 00:00:00', '2025-09-01 00:00:00', 'Pendiente', 'Cobro Factura nº 2401632 del 01-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1631, 19950.00, 1421, 1, 'PASTO', 2401633, 1, '2025-09-02 00:00:00', '2025-09-02 00:00:00', 'Pendiente', 'Cobro Factura nº 2401633 del 02-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1632, 17100.00, 1045, 1, 'PASTO', 2401634, 1, '2025-09-02 00:00:00', '2025-09-02 00:00:00', 'Pendiente', 'Cobro Factura nº 2401634 del 02-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1633, 19950.00, 1172, 1, 'PASTO', 2401635, 1, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pendiente', 'Cobro Factura nº 2401635 del 03-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1634, 25650.00, 1015, 1, 'PASTO', 2401636, 1, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pendiente', 'Cobro Factura nº 2401636 del 03-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1635, 14725.00, 1012, 1, 'PASTO', 2401637, 1, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pendiente', 'Cobro Factura nº 2401637 del 03-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1636, 15200.00, 1172, 1, 'PASTO', 2401638, 1, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pendiente', 'Cobro Factura nº 2401638 del 03-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1637, 21000.00, 1027, 1, 'PASTO', 2401639, 1, '2025-09-03 00:00:00', '2025-09-03 00:00:00', 'Pendiente', 'Cobro Factura nº 2401639 del 03-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1638, 23275.00, 1055, 1, 'PASTO', 2401640, 1, '2025-09-04 00:00:00', '2025-09-04 00:00:00', 'Pendiente', 'Cobro Factura nº 2401640 del 04-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1639, 10800.00, 1055, 1, 'PASTO', 2401641, 1, '2025-09-04 00:00:00', '2025-09-04 00:00:00', 'Pendiente', 'Cobro Factura nº 2401641 del 04-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1640, 284500.00, 1042, 1, 'PASTO', 2401642, 1, '2025-09-04 00:00:00', '2025-09-04 00:00:00', 'Pendiente', 'Cobro Factura nº 2401642 del 04-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL),
+	(1641, 12350.00, 1055, 1, 'PASTO', 2401643, 1, '2025-09-06 00:00:00', '2025-09-06 00:00:00', 'Pendiente', 'Cobro Factura nº 2401643 del 06-09-2025', ' ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, -1, NULL);
 
 -- Volcando estructura para tabla anubis.representantes
 CREATE TABLE IF NOT EXISTS `representantes` (
@@ -9814,7 +9591,7 @@ CREATE TABLE IF NOT EXISTS `tipos_impuestos` (
   KEY `idx_nombre` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla anubis.tipos_impuestos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla anubis.tipos_impuestos: ~5 rows (aproximadamente)
 INSERT INTO `tipos_impuestos` (`codigo`, `nombre`, `iva`, `recargo`, `observaciones`) VALUES
 	(1, 'Impuesto 21', 21.00, 1.40, NULL),
 	(2, 'Impuesto 4', 4.00, 0.50, NULL),
