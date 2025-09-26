@@ -730,6 +730,110 @@ class SincronizarRepository
         return true;
     }
 
+    public function guardarPagoCamareros($camarero)
+    {
+        $camarero = $camarero[0];
+
+        $columnas = array_keys($camarero);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO pagos_a_camareros (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($camarero as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+    public function guardarPagoProveedores(array $proveedor)
+    {
+        $proveedor = $proveedor[0];
+
+        $columnas = array_keys($proveedor);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO pagos_a_proveedores (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($proveedor as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
+    public function guardarPagoRecibosClientes(array $recibo): bool
+    {
+        $recibo = $recibo[0];
+
+        $columnas = array_keys($recibo);
+        $placeholders = implode(",", array_fill(0, count($columnas), "?"));
+        $updates = implode(",", array_map(fn($col) => "$col=VALUES($col)", $columnas));
+
+        $sql = "INSERT INTO recibos_de_clientes (" . implode(",", $columnas) . ")
+            VALUES ($placeholders)
+            ON DUPLICATE KEY UPDATE $updates";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $tipos = "";
+        $valores = [];
+        foreach ($recibo as $valor) {
+            if (is_int($valor)) {
+                $tipos .= "i";
+            } elseif (is_float($valor) || is_double($valor)) {
+                $tipos .= "d";
+            } else {
+                $tipos .= "s";
+            }
+            $valores[] = $valor;
+        }
+
+        $stmt->bind_param($tipos, ...$valores);
+        $stmt->execute();
+        $stmt->close();
+
+        $this->conexion->commit();
+        return true;
+    }
+
     public function consultarApiKey()
     {
         $sql = "SELECT api_key FROM api_keys WHERE id = 1";

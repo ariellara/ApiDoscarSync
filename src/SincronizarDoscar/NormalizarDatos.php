@@ -889,6 +889,143 @@ class NormalizarDatos
 
         return $normalizado;
     }
+    public function normalizarPagoCamareros(array $pago): array
+    {
+        $mapa = [
+            "Banco" => "banco",
+            "Domicilio Banco" => "domicilio_banco",
+            "Codigo Postal Banco" => "codigo_postal_banco",
+            "Poblacion Banco" => "poblacion_banco",
+            "Provincia Banco" => "provincia_banco",
+            "Pais Banco" => "pais_banco",
+            "Entidad" => "entidad",
+            "Sucursal" => "sucursal",
+            "DC" => "dc",
+            "Cuenta" => "cuenta",
+            "Observaciones" => "observaciones",
+            "Moneda" => "moneda",
+            "Facturado" => "facturado",
+            "Historico" => "historico",
+            "IBAN" => "iban"
+        ];
+
+        $normalizado = [];
+
+        foreach ($pago as $clave => $valor) {
+            if (isset($mapa[$clave])) {
+                $columna = $mapa[$clave];
+            } else {
+                $columna = strtolower(str_replace(" ", "_", $clave));
+            }
+            if ($valor === "") {
+                $valor = null;
+            } elseif (is_numeric($valor)) {
+                $valor = strpos($valor, '.') !== false ? (float) $valor : (int) $valor;
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarPagoProveedor(array $pago): array
+    {
+        $mapa = [
+            "Banco" => "banco",
+            "Domicilio Banco" => "domicilio_banco",
+            "Codigo Postal Banco" => "codigo_postal_banco",
+            "Poblacion Banco" => "poblacion_banco",
+            "Provincia Banco" => "provincia_banco",
+            "Pais Banco" => "pais_banco",
+            "Entidad" => "entidad",
+            "Sucursal" => "sucursal",
+            "DC" => "dc",
+            "Cuenta" => "cuenta",
+            "Observaciones" => "observaciones",
+            "Moneda" => "moneda",
+            "Facturado" => "facturado",
+            "Historico" => "historico",
+            "IBAN" => "iban",
+            "Numero Pago" => "numero_pago",
+            "Importe" => "importe",
+            "Proveedor" => "proveedor",
+            "Caja" => "caja",
+            "Lugar Libramiento" => "lugar_libramiento",
+            "Factura" => "factura",
+            "Orden" => "orden",
+            "Fecha Libramiento" => "fecha_libramiento",
+            "Vencimiento" => "vencimiento",
+            "Estado" => "estado",
+            "Descripcion" => "descripcion",
+            "Clausulas" => "clausulas"
+        ];
+
+        $normalizado = [];
+
+        foreach ($pago as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+            if ($valor === "") {
+                $valor = null;
+            } elseif (is_numeric($valor)) {
+                $valor = strpos($valor, '.') !== false ? (float) $valor : (int) $valor;
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+    public function normalizarReciboCliente(array $recibo): array
+    {
+        $mapa = [
+            "Numero Recibo" => "numero_recibo",
+            "Importe" => "importe",
+            "Cliente" => "cliente",
+            "Caja" => "caja",
+            "Lugar Libramiento" => "lugar_libramiento",
+            "Factura" => "factura",
+            "Orden" => "orden",
+            "Fecha Libramiento" => "fecha_libramiento",
+            "Vencimiento" => "vencimiento",
+            "Estado" => "estado",
+            "Descripcion" => "descripcion",
+            "Clausulas" => "clausulas",
+            "Banco" => "banco",
+            "Domicilio Banco" => "domicilio_banco",
+            "Codigo Postal Banco" => "codigo_postal_banco",
+            "Poblacion Banco" => "poblacion_banco",
+            "Provincia Banco" => "provincia_banco",
+            "Pais Banco" => "pais_banco",
+            "Entidad" => "entidad",
+            "Sucursal" => "sucursal",
+            "DC" => "dc",
+            "Cuenta" => "cuenta",
+            "Observaciones" => "observaciones",
+            "Moneda" => "moneda",
+            "Facturado" => "facturado",
+            "Historico" => "historico",
+            "IBAN" => "iban"
+        ];
+
+        $normalizado = [];
+
+        foreach ($recibo as $clave => $valor) {
+            $columna = $mapa[$clave] ?? strtolower(str_replace(" ", "_", $clave));
+
+            if ($valor === "") {
+                $valor = null;
+            } elseif (is_numeric($valor)) {
+                $valor = strpos($valor, '.') !== false ? (float) $valor : (int) $valor;
+            }
+
+            $normalizado[$columna] = $valor;
+        }
+
+        return $normalizado;
+    }
+
+
+
 
 
 

@@ -37,6 +37,7 @@ class SincronizarManager
             $datos = json_decode($data, true);
             $guardarArticulos = $this->guardarArticulos($datos["articulos"]);
             $guardarArticulosCompuestos = $this->guardarArticulosCompuestos($datos["articulosCompuestos"]);
+            //$guardarCabeceraAlbaranesCompra
             $guardarCajas = $this->guardarCajas($datos["cajas"]);
             $guardarCamareros = $this->guardarCamareros($datos["camareros"]);
             $guardarClientes = $this->guardarClientes($datos["clientes"]);
@@ -55,9 +56,9 @@ class SincronizarManager
             $guardarLogOperaciones = $this->guardarLogOperaciones($datos["logOperaciones"]);
             $guardarLogUsuarios = $this->guardarLogUsuarios($datos["logUsuarios"]);
             $guardarMezas = $this->guardarMesas($datos["mesas"]);
-
-
-
+            $pagoCamarero = $this->pagoCamareros($datos["pagosACamareros"]);
+            $pagoProvedores = $this->guardarPagoProveedores($datos["pagosAProveedores"]);
+            $pagoRecibosClientes = $this->guardarPagoRecibosClientes($datos["recibosDeClientes"]);
 
             $respuesta->setSuccess(true);
             $respuesta->setMensaje("Proceso de sincronizacion terminado correctamente.");
@@ -69,6 +70,51 @@ class SincronizarManager
             $this->logger->guardar("Error al Guardar Datos: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
         }
         return $respuesta;
+    }
+    private function guardarPagoRecibosClientes($pagos)
+    {
+        foreach ($pagos as $pago) {
+            try {
+                $pagoNormalizado = $this->normalizador->normalizarReciboCliente($pago);
+                $this->repositorio->guardarPagoRecibosClientes([$pagoNormalizado]);
+            } catch (Exception $e) {
+                $codigo = $pago['Importe'] ?? 'N/A';
+                $nombre = $pago['cliente'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar pago de recibo a cliente [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Pagos de recibos a clientes guardados correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+    }
+    private function guardarPagoProveedores($pagos)
+    {
+        foreach ($pagos as $pago) {
+            try {
+                $pagoNormalizado = $this->normalizador->normalizarPagoProveedor($pago);
+                $this->repositorio->guardarPagoProveedores([$pagoNormalizado]);
+            } catch (Exception $e) {
+                $codigo = $pago['id'] ?? 'N/A';
+                $nombre = $pago['proveedor'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar pago a proveedor [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Pagos a proveedores guardados correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
+    }
+    private function pagoCamareros($pagos)
+    {
+        foreach ($pagos as $pago) {
+            try {
+                $pagoNormalizado = $this->normalizador->normalizarPagoCamareros($pago);
+                $this->repositorio->guardarPagoCamareros([$pagoNormalizado]);
+            } catch (Exception $e) {
+                $codigo = $pago['id'] ?? 'N/A';
+                $nombre = $pago['camarero'] ?? 'N/A';
+                $this->logger->guardar("Error al guardar pago a camarero [{$codigo} - {$nombre}]: " . $e->getMessage(), "SincronizarManager", "SYSTEM");
+            }
+        }
+        $this->logger->guardar("Pagos a camareros guardados correctamente.", "SincronizarManager", "SYSTEM");
+        return true;
     }
     private function guardarMesas($mesas)
     {
